@@ -21,6 +21,8 @@
       crossorigin="anonymous"
       defer
     ></script>
+    <script src="./src/js/script.js" defer></script>
+    <script src="./src/js/toolTip.js" defer></script>
     <title>Document</title>
   </head>
   <body>
@@ -39,7 +41,9 @@
         <div class="col-md-6">
           <form action="./public/home.html">
             <div class="input-group mb-3">
-              <span class="input-group-text border-0">@</span>
+              <span class="input-group-text border-0" style="cursor: pointer"
+                >@</span
+              >
               <div class="form-floating">
                 <input
                   type="text"
@@ -53,19 +57,29 @@
             </div>
 
             <div class="input-group mb-3">
-              <span class="input-group-text border-0">@</span>
               <div class="form-floating">
                 <input
-                  type="text"
+                  type="password"
                   class="form-control"
                   id="password"
                   name="password"
                   placeholder="Digite a sua senha"
+                  id="password"
                 />
+
                 <label for="password" class="form-label"
                   >Digite a sua senha</label
                 >
               </div>
+              <span class="input-group-text border-0"
+                ><i
+                  class="bi bi-eye-slash"
+                  id="togglePassword"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="right"
+                  data-bs-title="Esconder ou mostrar senha"
+                ></i
+              ></span>
             </div>
 
             <div class="col" id="link-container">
