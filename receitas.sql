@@ -1,1 +1,0 @@
-SELECT * FROM livro_receita.receita;
