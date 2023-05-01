@@ -1,3 +1,9 @@
+<?php
+// session_start();
+include_once("../src/process/conn.php");
+echo $logado = $_SESSION['emailUsuario'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -44,6 +50,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="./favoritos.html">Favoritos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../src/process/login/sair.php">Sair</a>
             </li>
           </ul>
         </div>
