@@ -1,6 +1,7 @@
 <?php
-session_start();
+// session_start();
 include_once("./src/process/conn.php");
+include_once("./src/process/login/login.php");
 ?>
 
 <!DOCTYPE html>
@@ -26,6 +27,7 @@ include_once("./src/process/conn.php");
       crossorigin="anonymous"
       defer
     ></script>
+    <script src="./src/js/alert.js" defer></script>
     <link rel="stylesheet" href="./src/css/styles.css" />
     <title>Register</title>
   </head>
@@ -113,5 +115,20 @@ include_once("./src/process/conn.php");
         </div>
       </div>
     </div>
+
+    <?php
+    
+    
+    
+    ?>
+
+    <?php
+    
+    function confirmarSenha() {
+      echo "<div id='liveAlertPlaceholder'></div>";
+    }
+    
+    
+    ?>
   </body>
 </html>

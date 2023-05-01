@@ -1,7 +1,7 @@
 <?php
-session_start();
+// session_start();
 include_once("../src/process/conn.php");
-$logado = $_SESSION['emailUsuario'];
+echo $logado = $_SESSION['emailUsuario'];
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +16,6 @@ $logado = $_SESSION['emailUsuario'];
       integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../src/css/styles.css" />
     <title>Document</title>
   </head>
   <body>
@@ -52,14 +51,13 @@ $logado = $_SESSION['emailUsuario'];
             <li class="nav-item">
               <a class="nav-link" href="./favoritos.html">Favoritos</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../src/process/login/sair.php">Sair</a>
+            </li>
           </ul>
         </div>
       </div>
     </nav>
-
-    <div class="container">
-      <?php echo "Olá" . $logado;  ?>
-    </div>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"

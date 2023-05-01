@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 include_once("./src/process/conn.php");
 ?>
 <!DOCTYPE html>
@@ -46,6 +46,9 @@ include_once("./src/process/conn.php");
           <form action="./src/process/login/check.php" method="POST">
             <div class="input-group mb-3">
               <span class="input-group-text bg-transparent" style="cursor: pointer; border: none; border-bottom: 1px solid #ccc; border-radius: 0;"
+              data-bs-toggle="tooltip"
+              data-bs-placement="left"
+              data-bs-title="Email"
               >@</span
               >
               <div class="form-floating">
@@ -78,7 +81,7 @@ include_once("./src/process/conn.php");
                 >
               </div>
               <span class="input-group-text bg-transparent"
-                style="border: none; border-bottom: 1px solid #ccc; border-radius: 0;" 
+                style="border: none; border-bottom: 1px solid #ccc; border-radius: 0; cursor: pointer;" 
                 id="span" 
                 ><i
                   class="bi bi-eye-slash"
