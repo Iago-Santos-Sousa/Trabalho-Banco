@@ -1,6 +1,6 @@
 <?php
 // session_start();
-include_once("./src/process/conn.php");
+include_once("./config/conn.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
