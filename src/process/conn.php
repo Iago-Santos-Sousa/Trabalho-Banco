@@ -19,8 +19,10 @@ try {
 
   print "Erro: " . $e->getMessage() . "<br/>";
   die();
+  echo "erro na conexão";
 
 }
+
 
 
 

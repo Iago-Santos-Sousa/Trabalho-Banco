@@ -1,7 +1,16 @@
 <?php
-// session_start();
-include_once("./src/process/conn.php");
-include_once("./src/process/login/login.php");
+session_start();
+// include_once("./src/process/login/login.php");
+$msg = "";
+
+if(isset($_SESSION["msg"])) {
+
+	$msg = $_SESSION["msg"];
+
+	$_SESSION["msg"] = "";
+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -10,25 +19,13 @@ include_once("./src/process/login/login.php");
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
-      crossorigin="anonymous"
-    />
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css"
     />
-    <!-- JavaScript Bundle with Popper -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-      crossorigin="anonymous"
-      defer
-    ></script>
-    <script src="./src/js/alert.js" defer></script>
-    <link rel="stylesheet" href="./src/css/styles.css" />
+  
+    <link rel="stylesheet" type="text/css" href="./src/css/styles.css" />
     <title>Register</title>
   </head>
   <body>
@@ -63,7 +60,7 @@ include_once("./src/process/login/login.php");
             </div>
             <div class="form-floating mb-3">
               <input
-                type="email"
+                type="text"
                 class="form-control"
                 id="email"
                 name="email"
@@ -97,6 +94,13 @@ include_once("./src/process/login/login.php");
               >
             </div>
             <input type="submit" class="btn btn-primary" value="Cadastrar" />
+
+            <?php if($msg != ""): ?>
+              <div>
+                <p><?= $msg ?></p>
+              </div>
+            <?php endif; ?>
+          
           </form>
         </div>
         <div class="col-md-6">
@@ -116,19 +120,31 @@ include_once("./src/process/login/login.php");
       </div>
     </div>
 
-    <?php
-    
-    
-    
-    ?>
+  
 
-    <?php
-    
-    function confirmarSenha() {
-      echo "<div id='liveAlertPlaceholder'></div>";
-    }
-    
-    
-    ?>
+  <?php
+  // if ($msg != "") {
+  //   echo '
+
+  //   <div class="toast-container position-fixed bottom-0 end-0 p-3">
+  //     <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+  //       <div class="toast-header">
+  //         <img src="..." class="rounded me-2" alt="...">
+  //         <strong class="me-auto">Bootstrap</strong>
+  //         <small>11 mins ago</small>
+  //         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+  //       </div>
+  //       <div class="toast-body">
+  //         Hello, world! This is a toast message.
+  //       </div>
+  //     </div>
+  //   </div>';
+  //   // echo $msg;
+  // }
+  ?>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous" type="text/javascript"></script>
+  <!-- <script src="./src/js/alert.js" type="text/javascript"></script> -->
+
   </body>
 </html>
