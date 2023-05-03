@@ -1,7 +1,6 @@
 <?php
 session_start();
 include_once("../../../config/conn.php");
-
 // include_once("../../../register.php");
 ?>
 
@@ -21,8 +20,9 @@ if ( $method === "POST") {
 		$_SESSION['confirmarsenha'] = $dados["confirmpassword"];
 
 		if ($_SESSION['senhaUsuario'] != $_SESSION['confirmarsenha']) {
-			header("Location:"."../../../register.php");
 			$_SESSION['msg'] = 'Senha errada!';
+			header("Location:"."../../../register.php");
+			
 			return;
 
 		} else {
@@ -39,10 +39,10 @@ if ( $method === "POST") {
 			
 	}
 
-	// else {
-	// 	// header("Location:"."../../public/register.php");
-	// 	header("Location:"."../../../register.php");
-	// }
+	else {
+		// header("Location:"."../../public/register.php");
+		header("Location:"."../../../register.php");
+	}
 }
 
 

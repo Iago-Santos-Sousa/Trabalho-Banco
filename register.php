@@ -33,7 +33,7 @@ if(isset($_SESSION["msg"])) {
       <div class="row gx-5">
         <div class="col-md-6">
           <h2>Realize o seu cadastro</h2>
-          <form action="./src/process/login/login.php" method="POST">
+          <form class="" action="./src/process/login/login.php" method="POST">
             <div class="form-floating mb-3">
               <input
                 type="text"
@@ -92,15 +92,16 @@ if(isset($_SESSION["msg"])) {
               <label for="confirmpassword" class="form-label"
                 >Confirme sua senha</label
               >
+              <?php
+                if($msg != "") {
+                 
+                // echo $msg;
+                echo '<div id="liveAlertPlaceholder" class="mt-3"></div>';
+                }
+
+              ?>
             </div>
             <input type="submit" class="btn btn-primary" value="Cadastrar" />
-
-            <?php if($msg != ""): ?>
-              <div>
-                <p><?= $msg ?></p>
-              </div>
-            <?php endif; ?>
-          
           </form>
         </div>
         <div class="col-md-6">
@@ -144,7 +145,8 @@ if(isset($_SESSION["msg"])) {
   ?>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous" type="text/javascript"></script>
-  <!-- <script src="./src/js/alert.js" type="text/javascript"></script> -->
+  <!-- <script src="./src/js/validation.js" type="text/javascript"></script> -->
+  <script src="./src/js/alertRegister.js" type="text/javascript"></script>
 
   </body>
 </html>

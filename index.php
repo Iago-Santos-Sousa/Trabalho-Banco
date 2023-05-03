@@ -1,6 +1,16 @@
 <?php
 // session_start();
 include_once("./config/conn.php");
+// include_once("./src/process/login/check.php");
+$alerta = "";
+
+if(isset($_SESSION["alert"])) {
+
+	$alerta = $_SESSION["alert"];
+
+	$_SESSION["alert"] = "";
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,8 +35,6 @@ include_once("./config/conn.php");
       crossorigin="anonymous"
       defer
     ></script>
-    <script src="./src/js/script.js" defer></script>
-    <script src="./src/js/toolTip.js" defer></script>
     <title>Document</title>
   </head>
   <body>
@@ -42,8 +50,14 @@ include_once("./config/conn.php");
           </div>
         </div>
 
+          <?php
+          if($alerta != "") {
+            echo '<div class="row justify-content-center"><div class="col-6 col-md-6 col-lg-6 col-xl-5"><div id="liveAlertPlaceholder" class="mt-2"></div></div></div>';
+          }
+        ?>
+      
         <div class="col-10 col-md-9 col-lg-8 col-xl-8 col-xxl-8">
-          <form action="./src/process/login/check.php" method="POST">
+          <form action="./src/process/login/check.php" method="POST">    
             <div class="input-group mb-3">
               <span class="input-group-text bg-transparent" style="cursor: pointer; border: none; border-bottom: 1px solid #ccc; border-radius: 0;"
               data-bs-toggle="tooltip"
@@ -58,7 +72,6 @@ include_once("./config/conn.php");
                   id="email"
                   name="email"
                   placeholder="Digite o seu email"
-                  required
                 />
                 <label for="email" class="form-label">Digite o seu email</label>
               </div>
@@ -72,8 +85,6 @@ include_once("./config/conn.php");
                   id="password"
                   name="password"
                   placeholder="Digite a sua senha"
-                  id="password"
-                  required
                 />
 
                 <label for="password" class="form-label"
@@ -81,8 +92,7 @@ include_once("./config/conn.php");
                 >
               </div>
               <span class="input-group-text bg-transparent"
-                style="border: none; border-bottom: 1px solid #ccc; border-radius: 0; cursor: pointer;" 
-                id="span" 
+                style="border: none; border-bottom: 1px solid #ccc; border-radius: 0; cursor: pointer;"
                 ><i
                   class="bi bi-eye-slash"
                   id="togglePassword"
@@ -104,5 +114,11 @@ include_once("./config/conn.php");
         </div>
       </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous" type="text/javascript"></script>
+    <script src="./src/js/senha.js" type="text/javascript"></script>
+    <script src="./src/js/toolTip.js" type="text/javascript"></script>
+    <script src="./src/js/alertIndex.js" type="text/javascript"></script>
+
   </body>
 </html>
