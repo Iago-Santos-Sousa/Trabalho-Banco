@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("../../../config/conn.php");
+include_once("../conn.php");
 // include_once("../../../register.php");
 ?>
 
@@ -20,10 +20,10 @@ if ( $method === "POST") {
 		$_SESSION['confirmarsenha'] = $dados["confirmpassword"];
 
 		if ($_SESSION['senhaUsuario'] != $_SESSION['confirmarsenha']) {
-			$_SESSION['msg'] = 'Senha errada!';
-			header("Location:"."../../../register.php");
+			$_SESSION["msg"] = 'Senha errada!';
+			header("Location:"."../../src/templates/register.php");
 			
-			return;
+			// return;
 
 		} else {
 			$stmt = $conn->prepare("INSERT INTO usuario (nome, sobre_nome, email, senha) VALUES (:nome, :sobre_nome, :email, :senha)");
@@ -34,14 +34,14 @@ if ( $method === "POST") {
 			$stmt->bindParam(":senha", $_SESSION['senhaUsuario']);
 			$stmt->execute();
 
-			header("Location:"."../../../index.php");
+			header("Location:"."../../index.php");
 		}
 			
 	}
 
 	else {
 		// header("Location:"."../../public/register.php");
-		header("Location:"."../../../register.php");
+		header("Location:"."../../src/templates/register.php");
 	}
 }
 

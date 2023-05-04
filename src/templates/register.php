@@ -25,7 +25,7 @@ if(isset($_SESSION["msg"])) {
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css"
     />
   
-    <link rel="stylesheet" type="text/css" href="./src/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="../css/styles.css" />
     <title>Register</title>
   </head>
   <body>
@@ -33,7 +33,7 @@ if(isset($_SESSION["msg"])) {
       <div class="row gx-5">
         <div class="col-md-6">
           <h2>Realize o seu cadastro</h2>
-          <form class="" action="./src/process/login/login.php" method="POST">
+          <form class="" action="../../config/login/login.php" method="POST">
             <div class="form-floating mb-3">
               <input
                 type="text"
@@ -95,8 +95,7 @@ if(isset($_SESSION["msg"])) {
               <?php
                 if($msg != "") {
                  
-                // echo $msg;
-                echo '<div id="liveAlertPlaceholder" class="mt-3"></div>';
+                  echo '<div id="liveAlertPlaceholder" class="mt-3"></div>';
                 }
 
               ?>
@@ -108,45 +107,21 @@ if(isset($_SESSION["msg"])) {
           <div class="row align-items-center justify-content-center">
             <div class="col-6 col-md-12">
               <img
-                src="./src/img/chef.svg"
+                src="../img/chef.svg"
                 alt="Hello New Customer"
                 class="img-fluid"
               />
             </div>
             <div class="col-12" id="link-container">
-              <a href="./index.php">Eu já tenho uma conta</a>
+              <a href="../../index.php">Eu já tenho uma conta</a>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-  
-
-  <?php
-  // if ($msg != "") {
-  //   echo '
-
-  //   <div class="toast-container position-fixed bottom-0 end-0 p-3">
-  //     <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-  //       <div class="toast-header">
-  //         <img src="..." class="rounded me-2" alt="...">
-  //         <strong class="me-auto">Bootstrap</strong>
-  //         <small>11 mins ago</small>
-  //         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-  //       </div>
-  //       <div class="toast-body">
-  //         Hello, world! This is a toast message.
-  //       </div>
-  //     </div>
-  //   </div>';
-  //   // echo $msg;
-  // }
-  ?>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous" type="text/javascript"></script>
-  <!-- <script src="./src/js/validation.js" type="text/javascript"></script> -->
-  <script src="./src/js/alertRegister.js" type="text/javascript"></script>
+  <script src="../js/alertRegister.js" type="text/javascript"></script>
 
   </body>
 </html>

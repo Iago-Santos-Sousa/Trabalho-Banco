@@ -57,7 +57,7 @@ if(isset($_SESSION["alert"])) {
         ?>
       
         <div class="col-10 col-md-9 col-lg-8 col-xl-8 col-xxl-8">
-          <form action="./src/process/login/check.php" method="POST">    
+          <form action="./config/login/check.php" method="POST">    
             <div class="input-group mb-3">
               <span class="input-group-text bg-transparent" style="cursor: pointer; border: none; border-bottom: 1px solid #ccc; border-radius: 0;"
               data-bs-toggle="tooltip"
@@ -104,7 +104,7 @@ if(isset($_SESSION["alert"])) {
             </div>
 
             <div class="col" id="link-container">
-              <a href="./register.php">Ainda não tenho cadastro</a>
+              <a href="./src/templates/register.php">Ainda não tenho cadastro</a>
             </div>
 
             <div class="col mt-3">
@@ -116,7 +116,7 @@ if(isset($_SESSION["alert"])) {
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous" type="text/javascript"></script>
-    <script src="./src/js/senha.js" type="text/javascript"></script>
+    <script src="./src/js/senhaTooltip.js" type="text/javascript"></script>
     <script src="./src/js/toolTip.js" type="text/javascript"></script>
     <script src="./src/js/alertIndex.js" type="text/javascript"></script>
 

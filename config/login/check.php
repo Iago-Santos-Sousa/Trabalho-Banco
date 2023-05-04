@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include_once("../../../config/conn.php");
+include_once("../conn.php");
 // include_once("./login.php");
 // include_once("../../../index.php");
 
@@ -26,23 +26,26 @@ if ($method === "POST") {
 				
 			unset($_SESSION['emailUsuario']);
 			unset($_SESSION['senhaUsuario']);
+			unset($_SESSION['nomeUsuario']);
+			unset($_SESSION['sobrenomeUsuario']);
+			unset($_SESSION['confirmarsenha']);
 			
-			header("Location:"."../../../index.php");
+			header("Location:"."../../index.php");
 			$_SESSION["alert"] = "alerta";
-			// return;
+			return;
 
 		}  
 		
 		else {
 			$_SESSION['emailUsuario'] = $email;
 			$_SESSION['senhaUsuario'] = $senha;
-			header('Location:'. '../../../public/homeSistema.html'); 
+			header('Location:'. '../../public/homeSistema.php'); 
 		}
 
 			
 	} else {
 		$_SESSION["alert"] = "alerta";
-		header("Location:"."../../../index.php");
+		header("Location:"."../../index.php");
 	}
 	
 } 

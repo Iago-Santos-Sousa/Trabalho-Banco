@@ -1,3 +1,19 @@
+<?php
+session_start();
+include_once("../config/conn.php");
+
+if ((!isset($_SESSION['emailUsuario']) == true) and (!isset($_SESSION['senhaUsuario']) == true)) {
+    unset($_SESSION['emailUsuario']);
+    unset($_SESSION['senhaUsuario']);
+    unset($_SESSION['nomeUsuario']);
+    unset($_SESSION['sobrenomeUsuario']);
+    unset($_SESSION['confirmarsenha']);
+    session_destroy();
+    header("Location: ". "../index.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,9 +30,9 @@
 
     <title>Document</title>
   </head>
-  <body style="min-height: 100vh">
+  <body style="">
     <nav
-      class="navbar navbar-expand-lg bg-body-tertiary bg-primary"
+      class="navbar navbar-expand-lg bg-body-tertiary bg-primary fixed-top"
       data-bs-theme="dark"
     >
       <div class="container-fluid">
@@ -45,16 +61,19 @@
               <a class="nav-link" href="./favoritos.html">Favoritos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../src/process/login/sair.php">Sair</a>
+              <a class="nav-link" href="../config/login/sair.php">Sair</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <div class="container mt-5">
+    <div
+      class="container"
+      style="min-height: 100vh; padding-top: 10rem; padding-bottom: 5rem"
+    >
       <div class="row justify-content-center">
-        <div class="col-md-9">
+        <div class="col-12 col-lg-10">
           <div
             id="carouselExampleAutoplaying"
             class="carousel slide"
@@ -145,6 +164,15 @@
         </div>
       </div>
     </div>
+
+    <footer class="bg-dark text-center text-lg-start bottom text-light">
+      <!-- Copyright -->
+      <div class="text-center p-3">
+        © 2023 Copyright:
+        <a class="text-light" href="https://mdbootstrap.com/">Receitas</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
