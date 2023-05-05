@@ -9,7 +9,7 @@ if ((!isset($_SESSION['emailUsuario']) == true) and (!isset($_SESSION['senhaUsua
     unset($_SESSION['sobrenomeUsuario']);
     unset($_SESSION['confirmarsenha']);
     session_destroy();
-    header("Location: ". "../index.php");
+    header("Location: ". "./index.html");
 }
 
 ?>
@@ -70,10 +70,10 @@ if ((!isset($_SESSION['emailUsuario']) == true) and (!isset($_SESSION['senhaUsua
 
     <div
       class="container"
-      style="min-height: 100vh; padding-top: 10rem; padding-bottom: 5rem"
+      style="min-height: auto; padding-top: 5rem; padding-bottom: 5rem"
     >
       <div class="row justify-content-center">
-        <div class="col-12 col-lg-10">
+        <div class="col-10 col-sm-12 col-md-10 col-lg-9">
           <div
             id="carouselExampleAutoplaying"
             class="carousel slide"
@@ -165,7 +165,7 @@ if ((!isset($_SESSION['emailUsuario']) == true) and (!isset($_SESSION['senhaUsua
       </div>
     </div>
 
-    <footer class="bg-dark text-center text-lg-start bottom text-light">
+    <footer class="bg-dark text-center text-lg-start fixed-bottom text-light">
       <!-- Copyright -->
       <div class="text-center p-3">
         © 2023 Copyright:
