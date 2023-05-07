@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+// session_start();
 include_once("../conn.php");
 // include_once("./login.php");
 // include_once("../../../index.php");

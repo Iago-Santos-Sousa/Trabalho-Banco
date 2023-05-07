@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 include_once("../config/conn.php");
 
 if ((!isset($_SESSION['emailUsuario']) == true) and (!isset($_SESSION['senhaUsuario']) == true)) {
@@ -68,98 +68,99 @@ if ((!isset($_SESSION['emailUsuario']) == true) and (!isset($_SESSION['senhaUsua
       </div>
     </nav>
 
-    <div
-      class="container"
-      style="min-height: auto; padding-top: 5rem; padding-bottom: 5rem"
-    >
-      <div class="row justify-content-center">
-        <div class="col-10 col-sm-12 col-md-10 col-lg-9">
-          <div
-            id="carouselExampleAutoplaying"
-            class="carousel slide"
-            data-bs-ride="carousel"
-          >
-            <div class="carousel-indicators">
-              <button
-                type="button"
-                data-bs-target="#carouselExampleAutoplaying"
-                data-bs-slide-to="0"
-                class="active"
-                aria-current="true"
-                aria-label="Slide 1"
-              ></button>
-              <button
-                type="button"
-                data-bs-target="#carouselExampleAutoplaying"
-                data-bs-slide-to="1"
-                aria-label="Slide 2"
-              ></button>
-              <button
-                type="button"
-                data-bs-target="#carouselExampleAutoplaying"
-                data-bs-slide-to="2"
-                aria-label="Slide 3"
-              ></button>
-            </div>
+    <div style="height: 100vh;">
+      <div
+        class="container"
+      >
+        <div class="row justify-content-center" style="padding-top: 10rem;">
+          <div class="col-10 col-sm-12 col-md-10 col-lg-9">
             <div
-              class="carousel-inner rounded-5 shadow-4-strong"
-              id="meuCarrossel"
+              id="carouselExampleAutoplaying"
+              class="carousel slide"
+              data-bs-ride="carousel"
             >
-              <div class="carousel-item active">
-                <img
-                  src="../src/img/img-um.jpg"
-                  class="d-block img-fluid"
-                  alt="..."
-                />
-                <div class="carousel-caption d-none d-md-block">
-                  <h3>Crie as suas receitas</h3>
+              <div class="carousel-indicators">
+                <button
+                  type="button"
+                  data-bs-target="#carouselExampleAutoplaying"
+                  data-bs-slide-to="0"
+                  class="active"
+                  aria-current="true"
+                  aria-label="Slide 1"
+                ></button>
+                <button
+                  type="button"
+                  data-bs-target="#carouselExampleAutoplaying"
+                  data-bs-slide-to="1"
+                  aria-label="Slide 2"
+                ></button>
+                <button
+                  type="button"
+                  data-bs-target="#carouselExampleAutoplaying"
+                  data-bs-slide-to="2"
+                  aria-label="Slide 3"
+                ></button>
+              </div>
+              <div
+                class="carousel-inner rounded-5 shadow-4-strong"
+                id="meuCarrossel"
+              >
+                <div class="carousel-item active">
+                  <img
+                    src="../src/img/img-um.jpg"
+                    class="d-block img-fluid"
+                    alt="..."
+                  />
+                  <div class="carousel-caption d-none d-md-block">
+                    <h3>Crie as suas receitas</h3>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="../src/img/img-dois.jpg"
+                    class="d-block img-fluid"
+                    alt="..."
+                  />
+                  <div class="carousel-caption d-none d-md-block">
+                    <h3>Escolha entre as suas favoritas</h3>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="../src/img/img-tres.jpg"
+                    class="d-block img-fluid"
+                    alt="..."
+                  />
+                  <div class="carousel-caption d-none d-md-block">
+                    <h3>Altere suas receitas quando quiser</h3>
+                  </div>
                 </div>
               </div>
-              <div class="carousel-item">
-                <img
-                  src="../src/img/img-dois.jpg"
-                  class="d-block img-fluid"
-                  alt="..."
-                />
-                <div class="carousel-caption d-none d-md-block">
-                  <h3>Escolha entre as suas favoritas</h3>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img
-                  src="../src/img/img-tres.jpg"
-                  class="d-block img-fluid"
-                  alt="..."
-                />
-                <div class="carousel-caption d-none d-md-block">
-                  <h3>Altere suas receitas quando quiser</h3>
-                </div>
-              </div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Next</span>
+              </button>
             </div>
-            <button
-              class="carousel-control-prev"
-              type="button"
-              data-bs-target="#carouselExampleAutoplaying"
-              data-bs-slide="prev"
-            >
-              <span
-                class="carousel-control-prev-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button
-              class="carousel-control-next"
-              type="button"
-              data-bs-target="#carouselExampleAutoplaying"
-              data-bs-slide="next"
-            >
-              <span
-                class="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="visually-hidden">Next</span>
-            </button>
           </div>
         </div>
       </div>
