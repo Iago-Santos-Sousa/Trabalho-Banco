@@ -1,6 +1,12 @@
+CREATE DATABASE livro_receitas;
+USE livro_receitas;
 
-
-DELETE FROM usuario WHERE id >= 1;
+CREATE TABLE usuario (
+	nome VARCHAR(60) NOT NULL,
+    sobre_nome VARCHAR(60) NOT NULL,
+    email VARCHAR(60) NOT NULL,
+    senha VARCHAR(60) NOT NULL
+);
 
 CREATE TABLE receitas (
 	receita_id INT NOT NULL AUTO_INCREMENT,
@@ -38,12 +44,6 @@ CREATE TABLE receita_ingredientes (
     FOREIGN KEY (ingrediente_id) REFERENCES ingredientes(ingrediente_id)
 );
 
-INSERT INTO receitas(receita_nome, descricao) VALUES ("bolo de fubá", "bolo de fuba 
-preparado com banho maria");
-
-INSERT INTO medicao_unidades(medicao_descricao) VALUES ("utilizamos bastante ovos e farinha");
-INSERT INTO medicao_qty(qty_amount) VALUES ("10 ovos e 1 saco de farinha de trigo");
-INSERT INTO ingredientes(ingrediente_nome) VALUES ("farinha e ovos");
 
 
     
