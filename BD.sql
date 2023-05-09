@@ -1,11 +1,13 @@
-CREATE DATABASE livro_receitas;
-USE livro_receitas;
+CREATE DATABASE livro_receita;
+USE livro_receita;
 
 CREATE TABLE usuario (
+	id INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(60) NOT NULL,
     sobre_nome VARCHAR(60) NOT NULL,
     email VARCHAR(60) NOT NULL,
-    senha VARCHAR(60) NOT NULL
+    senha VARCHAR(60) NOT NULL,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE receitas (
