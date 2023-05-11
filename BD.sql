@@ -34,10 +34,12 @@ CREATE TABLE quantidades (
 
 CREATE TABLE receitas_ingredientes (
     id INT(11) NOT NULL AUTO_INCREMENT,
+    id_usuario INT(11) NOT NULL,
     id_receita INT(11) NOT NULL,
     id_ingrediente INT(11) NOT NULL,
     id_quantidade INT(11) NOT NULL,
     PRIMARY KEY (id),
+    PRIMARY KEY (id_usuario) REFERENCES usuario (id),
     FOREIGN KEY (id_receita) REFERENCES receitas(id),
     FOREIGN KEY (id_ingrediente) REFERENCES ingredientes(id),
     FOREIGN KEY (id_quantidade) REFERENCES quantidades(id)
