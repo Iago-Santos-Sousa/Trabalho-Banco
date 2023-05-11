@@ -2,8 +2,8 @@ CREATE DATABASE livro_receita;
 USE livro_receita;
 
 CREATE TABLE usuario (
-	id INT NOT NULL AUTO_INCREMENT,
-	nome VARCHAR(60) NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(60) NOT NULL,
     sobre_nome VARCHAR(60) NOT NULL,
     email VARCHAR(60) NOT NULL,
     senha VARCHAR(60) NOT NULL,
@@ -11,40 +11,40 @@ CREATE TABLE usuario (
 );
 
 CREATE TABLE receitas (
-	receita_id INT NOT NULL AUTO_INCREMENT,
-    receita_nome VARCHAR(60) NOT NULL,
-    descricao VARCHAR(90) NOT NULL,
-    PRIMARY KEY (receita_id)
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(255) NOT NULL,
+    tempo_de_preparo INT(11) NOT NULL,
+    modo_de_preparo TEXT NOT NULL,
+    PRIMARY KEY (id)
 );
 
-CREATE TABLE medicao_unidades (
-	medicao_id INT NOT NULL AUTO_INCREMENT,
-    medicao_descricao VARCHAR(90) NOT NULL,
-    PRIMARY KEY (medicao_id)
-);
-
-CREATE TABLE medicao_qty (
-	medicao_qty_id INT NOT NULL AUTO_INCREMENT,
-    qty_amount VARCHAR(90) NOT NULL,
-    PRIMARY KEY (medicao_qty_id)
-);
 
 CREATE TABLE ingredientes (
-	ingrediente_id INT NOT NULL AUTO_INCREMENT,
-    ingrediente_nome VARCHAR(90) NOT NULL,
-    PRIMARY KEY (ingrediente_id)
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
 );
 
-CREATE TABLE receita_ingredientes (
-	receita_id INT NOT NULL,
-    medicao_id INT NOT NULL,
-    medicao_qty_id INT NOT NULL,
-    ingrediente_id INT NOT NULL,
-    FOREIGN KEY (receita_id) REFERENCES receitas(receita_id),
-    FOREIGN KEY (medicao_id) REFERENCES medicao_unidades(medicao_id),
-    FOREIGN KEY (medicao_qty_id) REFERENCES medicao_qty(medicao_qty_id),
-    FOREIGN KEY (ingrediente_id) REFERENCES ingredientes(ingrediente_id)
+CREATE TABLE quantidades (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    quantidade INT(11) NOT NULL,
+    unidade_de_medida VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
 );
+
+CREATE TABLE receitas_ingredientes (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    id_receita INT(11) NOT NULL,
+    id_ingrediente INT(11) NOT NULL,
+    id_quantidade INT(11) NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (id_receita) REFERENCES receitas(id),
+    FOREIGN KEY (id_ingrediente) REFERENCES ingredientes(id),
+    FOREIGN KEY (id_quantidade) REFERENCES quantidades(id)
+);
+
+
+
 
 
 
