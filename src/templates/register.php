@@ -1,16 +1,5 @@
 <?php
 session_start();
-// include_once("./src/process/login/login.php");
-$msg = "";
-
-if(isset($_SESSION["msg"])) {
-
-	$msg = $_SESSION["msg"];
-
-	$_SESSION["msg"] = "";
-
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -34,40 +23,68 @@ if(isset($_SESSION["msg"])) {
         <div class="col-md-6">
           <h2>Realize o seu cadastro</h2>
           <form class="" action="../../config/login/login.php" method="POST">
+            <?php
+              if(isset($_SESSION["nome-user"]) && isset($_SESSION["sobre-nome-user"])) {
+                echo $_SESSION["nome-user"];
+                echo $_SESSION["sobre-nome-user"];
+                unset($_SESSION["nome-user"]);
+                unset($_SESSION["sobre-nome-user"]);
+
+              } else {
+                echo '
+                <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  name="name"
+                  placeholder="Digite seu nome"
+                
+                />
+                <label for="name" class="form-label">Digite seu nome</label>
+                </div>';
+
+                echo '
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="lastname"
+                      name="lastname"
+                      placeholder="Digite seu sobrenome"
+                      
+                    />
+                    <label for="lastname" class="form-label"
+                      >Digite seu sobrenome</label
+                    >
+                  </div>';
+                }
+              ?>
             <div class="form-floating mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="name"
-                name="name"
-                placeholder="Digite seu nome"
-                required
-              />
-              <label for="name" class="form-label">Digite seu nome</label>
-            </div>
-            <div class="form-floating mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="lastname"
-                name="lastname"
-                placeholder="Digite seu sobrenome"
-                required
-              />
-              <label for="lastname" class="form-label"
-                >Digite seu sobrenome</label
-              >
-            </div>
-            <div class="form-floating mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="email"
-                name="email"
-                placeholder="Digite seu email"
-                required
-              />
-              <label for="email" class="form-label">Digite seu email</label>
+              <?php
+                if(isset($_SESSION["alert-input"]) || isset($_SESSION["alert-email"])) {
+                  echo $_SESSION["alert-input"];
+                  // echo '<script type="text/javascript">
+                  // const b = document.getElementById("email");
+                  // b.classList.add("is-invalid");
+                  // </script>';
+                  echo $_SESSION["alert-email"];
+                  unset($_SESSION["alert-input"]);
+                  unset($_SESSION["alert-email"]);
+                  
+                } else {
+                  echo '
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="email"
+                      name="email"
+                      placeholder="Digite seu email"
+                    />
+                  <label for="email" class="form-label">Digite seu email</label>';
+                }
+              
+              ?>
             </div>
             <div class="form-floating mb-3">
               <input
@@ -76,9 +93,14 @@ if(isset($_SESSION["msg"])) {
                 id="password"
                 name="password"
                 placeholder="Digite sua senha"
-                required
               />
               <label for="password" class="form-label">Digite sua senha</label>
+              <?php
+                if(isset($_SESSION["msg2"])) {
+                  echo '<p class="text-danger">Senha inválida. A senha deve conter pelo menos 8 caracteres, incluindo pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.</p>';
+                  unset($_SESSION["msg2"]);
+                }
+              ?>
             </div>
             <div class="form-floating mb-3">
               <input
@@ -87,19 +109,24 @@ if(isset($_SESSION["msg"])) {
                 id="confirmpassword"
                 name="confirmpassword"
                 placeholder="Confirme sua senha"
-                required
+                
               />
               <label for="confirmpassword" class="form-label"
                 >Confirme sua senha</label
               >
               <?php
-                if($msg != "") {
-                 
-                  echo '<div id="liveAlertPlaceholder" class="mt-3"></div>';
+                if(isset($_SESSION["msg"])) {
+                  echo '<p class="text-danger">Confirme a sua senha corretamente.</p>';
+                  unset($_SESSION["msg"]);
                 }
-
               ?>
             </div>
+            <?php
+              if(isset($_SESSION["alerta"])) {
+                echo '<p class="text-danger">Preencha todos os campos!</p>';
+                unset($_SESSION["alerta"]);
+              }
+            ?>
             <input type="submit" class="btn btn-primary" value="Cadastrar" />
           </form>
         </div>
@@ -120,8 +147,7 @@ if(isset($_SESSION["msg"])) {
       </div>
     </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous" type="text/javascript"></script>
-  <script src="../js/alertRegister.js" type="text/javascript"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous" type="text/javascript"></script>
+    <script src="../js/alertRegister.js" type="text/javascript"></script>
   </body>
 </html>

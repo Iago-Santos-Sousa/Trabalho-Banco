@@ -1,15 +1,10 @@
 <?php
-// session_start();
 include_once("./config/conn.php");
-// include_once("./src/process/login/check.php");
-$alerta = "";
+$alertaIndex = "";
 
 if(isset($_SESSION["alert"])) {
-
-	$alerta = $_SESSION["alert"];
-
+	$alertaIndex = $_SESSION["alert"];
 	$_SESSION["alert"] = "";
-
 }
 ?>
 <!DOCTYPE html>
@@ -51,7 +46,7 @@ if(isset($_SESSION["alert"])) {
         </div>
 
           <?php
-          if($alerta != "") {
+          if($alertaIndex != "") {
             echo '<div class="row justify-content-center"><div class="col-6 col-md-6 col-lg-6 col-xl-5"><div id="liveAlertPlaceholder" class="mt-2"></div></div></div>';
           }
         ?>
@@ -60,10 +55,7 @@ if(isset($_SESSION["alert"])) {
           <form action="./config/login/check.php" method="POST">    
             <div class="input-group mb-3">
               <span class="input-group-text bg-transparent" style="cursor: pointer; border: none; border-bottom: 1px solid #ccc; border-radius: 0;"
-              data-bs-toggle="tooltip"
-              data-bs-placement="left"
-              data-bs-title="Email"
-              >@</span
+              ><i class="bi bi-envelope-at fs-5" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Email"></i></span
               >
               <div class="form-floating">
                 <input
@@ -94,7 +86,7 @@ if(isset($_SESSION["alert"])) {
               <span class="input-group-text bg-transparent"
                 style="border: none; border-bottom: 1px solid #ccc; border-radius: 0; cursor: pointer;"
                 ><i
-                  class="bi bi-eye-slash"
+                  class="bi bi-eye-slash fs-5"
                   id="togglePassword"
                   data-bs-toggle="tooltip"
                   data-bs-placement="right"
@@ -117,7 +109,7 @@ if(isset($_SESSION["alert"])) {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous" type="text/javascript"></script>
     <script src="./src/js/senhaTooltip.js" type="text/javascript"></script>
-    <script src="./src/js/toolTip.js" type="text/javascript"></script>
+    <script src="./src/js/toolTipEmail.js" type="text/javascript"></script>
     <script src="./src/js/alertIndex.js" type="text/javascript"></script>
 
   </body>
