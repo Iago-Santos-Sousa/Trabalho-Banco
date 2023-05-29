@@ -115,7 +115,7 @@ if ( $method === "POST") {
 		} else {
 			if (validarSenha($senha)) {
 				inserirUser($nome, $sobrenome, $email, $senha);
-				header("Location:"."../../index.php");
+				header("Location:"."../../src/templates/loginEntrar.php");
 				
 			} else {
 				$_SESSION["msg2"] = "<div>Senha inválida. A senha deve conter pelo menos 8 caracteres, incluindo pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.</div>";

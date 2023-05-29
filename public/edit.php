@@ -1,5 +1,11 @@
 <?php
+// include_once("../config/conn.php");
 include_once("../config/process.php");
+
+// $usuario;
+// if(isset($_SESSION["id"])) {
+//   $usuario = $_SESSION["id"];
+// }
 
 ?>
 <!DOCTYPE html>
@@ -67,11 +73,18 @@ include_once("../config/process.php");
     <div class="container px-3" style="padding-top: 10rem;">
 
     <!-- id do usuario -->
-    <div><?php echo $userID;?></div>
+    <!-- <div><?php echo $userID;?></div> -->
     <!-- id do usuario -->
 
       <form method="POST" action="../config/process.php">
-       
+        <input type="hidden" name="usuarioID" value="<?=$_GET["id"]?>">
+        <input type="hidden" name="receitaID" value="<?=$_GET["receita_id"]?>">
+        <?php
+          // $id = $_GET["id"];
+          // $receitaID = $_GET["receita_id"];
+          // $onlyContato = umRegistro($id, $receitaID, $conn);
+          // echo "<div>" . $onlyContato["receita_nome"] . "</div>";
+        ?>
         <div class="row justify-content-center">
           <div class="col-md-4">
             <div class="form-floating mb-3">
@@ -80,6 +93,7 @@ include_once("../config/process.php");
                 class="form-control focus-ring focus-ring-primary"
                 id="nome-receita"
                 name="nome_receita"
+                value="<?=$onlyContato["receita_nome"]?>"
                 placeholder="Nome da receita"
               />
               <label for="nome-receita">Nome da receita</label>
@@ -93,6 +107,7 @@ include_once("../config/process.php");
                 class="form-control focus-ring focus-ring-primary"
                 id="tempo_preparo"
                 name="tempo_preparo"
+                value="<?=$onlyContato["tempo_preparo"]?>"
                 placeholder="Ingrediente"
               />
               <label for="tempo_preparo">Tempo de preparo</label>
@@ -109,6 +124,7 @@ include_once("../config/process.php");
                 class="form-control focus-ring focus-ring-primary"
                 id="ingrediente"
                 name="ingrediente"
+                value="<?=$onlyContato["nome_ingrediente"]?>"
                 placeholder="Ingrediente"
               />
               <label for="ingrediente">Ingredientes</label>
@@ -122,11 +138,24 @@ include_once("../config/process.php");
                 class="form-control focus-ring focus-ring-primary"
                 id="quantidades"
                 name="quantidades"
+                value="<?=$onlyContato["ingredientes_qtd"]?>"
                 placeholder="Quantidade"
               />
               <label for="quantidades">Quantidades</label>
             </div>
           </div>
+
+          <!-- <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control focus-ring focus-ring-primary"
+                id="quantidades"
+                placeholder="uni_medida"
+              />
+              <label for="uni_medida">Unidade de medida</label>
+            </div>
+          </div> -->
         </div>
 
         <div class="row justify-content-center mt-3">
@@ -138,7 +167,8 @@ include_once("../config/process.php");
                 id="modo_preparo"
                 name="modo_preparo"
                 style="height: 100px"
-              ></textarea>
+              ><?=$onlyContato["modo_preparo"]?>
+            </textarea>
               <label for="modo_preparo">Modo de preparo</label>
             </div>
           </div>
@@ -147,84 +177,11 @@ include_once("../config/process.php");
         <!-- Botão submit -->
         <div class="row justify-content-center mt-4">
           <div class="col-auto">
-            <input type="hidden" name="campo_oculto" value="create" />
+            <input type="hidden" name="editar" value="edit" />
             <button type="submit" class="btn btn-primary">Adicionar</button>
           </div>
         </div>
       </form>
-    </div>
-
-    <div class="container mt-5">
-      <div><?php if(isset($_SESSION["input"]) && !empty($input)) {
-        echo $input;
-      }?></div>
-      <div class="row">
-        <div class="col">
-          <?php if(count($AllContatos) >
-          0):?>
-
-          <table class="table table-hover mb-0">
-            <thead class="" style="background-color: #007500; color: #fff;">
-              <tr>
-                <!-- <th scope="col" class="">ID usuário</th> -->
-                <th scope="col" class="">Nome receita</th>
-                <th scope="col" class="">Tempo preparo</th>
-                <th scope="col" class="">Ingredientes</th>
-                <th scope="col" class="">Quantidade</th>
-                <th scope="col" class="">Descrição</th>
-                <th scope="col" class="">Ações</th>
-              </tr>
-            </thead>
-            <tbody class="">
-              <?php foreach($AllContatos as $contato):?>
-              <tr>
-                <!-- <td><?=$contato["id_usuario"]?></td> -->
-                <td><?=$contato["nome_receita"]?></td>
-                <td><?=$contato["tempo_preparo"]?></td>
-                <td><?=$contato["nome_ingrediente"]?></td>
-                <td><?=$contato["ingredientes_qtd"]?></td>
-                <td><?=$contato["modo_preparo"]?></td>
-                <td class="d-flex justify-content-between">
-                  <a class="lapis text-center" href="./edit.php?receita_id=<?=$contato["receita_id"]?>&id=<?=$contato["id_usuario"]?>"><i class="fa-solid fa-pencil text-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Editar curso" data-bs-custom-class="custom-tooltip"></i></a>
-
-                  <form method="POST" action="../config/process.php">
-                    <input type="hidden" name="favorito" value="favoritos">
-
-                    <input type="hidden" name="id_receita" value="<?=$contato["id_receita"]?>">
-
-                    <input type="hidden" name="id_ingrediente" value="<?=$contato["id_ingrediente"]?>">
-
-                    <input type="hidden" name="receita_id" value="<?=$contato["receita_id"]?>">
-
-                    <input type="hidden" name="receita_ingrediente" value="<?=$contato["receita_ingrediente"]?>">
-
-                    <button type="submit" class="delete-btn border-0 text-danger" style="background-color: initial;"><i class="fa-solid fa-star"></i></button>
-                  </form>
-
-                  <form method="POST" action="../config/process.php">
-                    <input type="hidden" name="type" value="delete">
-
-                    <input type="hidden" name="id_receita" value="<?=$contato["id_receita"]?>">
-
-                    <input type="hidden" name="id_ingrediente" value="<?=$contato["id_ingrediente"]?>">
-
-                    <input type="hidden" name="receita_id" value="<?=$contato["receita_id"]?>">
-
-                    <input type="hidden" name="receita_ingrediente" value="<?=$contato["receita_ingrediente"]?>">
-
-                    <button type="submit" class="delete-btn border-0 text-danger" style="background-color: initial;"><i class="fa-solid fa-trash-can" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir curso" data-bs-custom-class="custom-tooltip"></i></button>
-                  </form>
-                </td>
-                </tr>
-                <?php endforeach;?>
-            </tbody>
-          </table>
-
-          <?php else:?>
-            <div>não há receitas</div>
-          <?php endif;?>
-        </div>
-      </div>
     </div>
 
     <script

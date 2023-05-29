@@ -5,7 +5,7 @@ include_once("../conn.php");
 // unset($_SESSION["email"]);
 session_destroy();
 // header("Location: ". "../../index.php");
-header("Location: ". "../../public/homeSistema.php");
+header("Location: ". "../../homeSistema.php");
 
 
 ?>

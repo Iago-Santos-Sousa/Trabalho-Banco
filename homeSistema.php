@@ -1,5 +1,5 @@
 <?php
-include_once("../config/conn.php");
+include_once("./config/conn.php");
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +14,7 @@ include_once("../config/conn.php");
       integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../src/css/cssPublic.css" />
+    <link rel="stylesheet" href="./src/css/cssPublic.css" />
 
     <title>Document</title>
   </head>
@@ -25,7 +25,7 @@ include_once("../config/conn.php");
     >
       <div class="container-fluid">
         <a class="navbar-brand" href="./homeSistema.php"
-          ><img src="../src/img/icon.png" alt="icon logo"
+          ><img src="./src/img/icon.png" alt="icon logo"
         /></a>
         <button
           class="navbar-toggler"
@@ -42,20 +42,20 @@ include_once("../config/conn.php");
           <ul class="navbar-nav align-items-center">
             <?php if(isset($_SESSION["id"])): ?>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="./addreceita.php"
+              <a class="nav-link" aria-current="page" href="./public/addreceita.php"
                 >Adicionar receita</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./favoritos.php">Favoritos</a>
+              <a class="nav-link" href="./public/favoritos.php">Favoritos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../config/login/sair.php">Sair</a>
+              <a class="nav-link" href="./config/login/sair.php">Sair</a>
             </li>
             <?php endif; ?>
             <?php if (!isset($_SESSION["id"])): ?>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="../index.php"
+              <a class="nav-link" aria-current="page" href="./src/templates/loginEntrar.php"
                 >Login</a
               >
             </li>
@@ -105,7 +105,7 @@ include_once("../config/conn.php");
                   >
                     <div class="carousel-item active">
                       <img
-                        src="../src/img/img-um.jpg"
+                        src="./src/img/img-um.jpg"
                         class="d-block img-fluid"
                         alt="..."
                       />
@@ -115,7 +115,7 @@ include_once("../config/conn.php");
                     </div>
                     <div class="carousel-item">
                       <img
-                        src="../src/img/img-dois.jpg"
+                        src="./src/img/img-dois.jpg"
                         class="d-block img-fluid"
                         alt="..."
                       />
@@ -125,7 +125,7 @@ include_once("../config/conn.php");
                     </div>
                     <div class="carousel-item">
                       <img
-                        src="../src/img/img-tres.jpg"
+                        src="./src/img/img-tres.jpg"
                         class="d-block img-fluid"
                         alt="..."
                       />
