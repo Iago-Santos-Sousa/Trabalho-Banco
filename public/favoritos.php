@@ -66,61 +66,57 @@ include_once("../config/process.php");
       </div>
     </nav>
 
-    <div class="container" style="margin-top: 20rem;">
-      <div><?php echo $userID;?></div>
+     <div class="container pb-5" style="padding-top: 10rem;">
       <div class="row">
-        <div class="col">
-          <?php if(count($AllFavoritos) >
-          0):?>
+        <?php if(count($AllFavoritos) >
+        0):?>
+        <?php foreach($AllFavoritos as $favorite):?>
+        <div class="col-md-4">
+          <div class="card border-info border-3 mt-2">
+            
+            <div class="card-body">
+              <h5 class="card-title text-center"><?=$favorite["nome"]?></h5>
+              <div><hr class="border-3 text-success"></div>
+              <!-- <p class="card-text"><?=$favorite["modo_preparo"]?></p> -->
+              <p class="card-text fw-bold"><?=$favorite["tempo_de_preparo"]?>: Minutos</p>
+              <p class="card-text text-center d-flex gap-1 justify-content-center flex-wrap">
+                <a type="button" tabindex="0" class="btn btn-primary" role="button" data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="<?=$favorite["nome_ingrediente"]?>">
+                Ingredientes
+                </a>
+                <a type="button" tabindex="0" class="btn btn-success" role="button" data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="<?=$favorite["descricao"]?>">
+                Descrição
+                </a>
+              </p>
+              <div class="acoes d-flex">
+                <form method="POST" action="../config/process.php">
+                  <input type="hidden" name="deletarFavorito" value="d">
 
-          <table class="table table-hover mb-0">
-            <thead class="" style="background-color: #007500; color: #fff;">
-              <tr>
-                <!-- <th scope="col" class="">ID usuário</th> -->
-                <th scope="col" class="">Nome receita</th>
-                <th scope="col" class="">Tempo preparo</th>
-                <th scope="col" class="">Ingredientes</th>
-                <th scope="col" class="">Quantidade</th>
-                <th scope="col" class="">Descrição</th>
-                <th scope="col" class="">Ações</th>
-              </tr>
-            </thead>
-            <tbody class="">
-              <?php foreach($AllFavoritos as $favorite):?>
-              <tr>
-                <!-- <td><?=$favorite["id_usuario"]?></td> -->
-                <td><?=$favorite["nome"]?></td>
-                <td><?=$favorite["tempo_de_preparo"]?></td>
-                <td><?=$favorite["nome_ingrediente"]?></td>
-                <td><?=$favorite["quantidade"]?></td>
-                <td><?=$favorite["descricao"]?></td>
-                <td class="d-flex justify-content-between">
-                 
+                  <input type="hidden" name="favorito_id" value="<?=$favorite["id"]?>">
 
-                  <form method="POST" action="../config/process.php">
-                    <input type="hidden" name="deletarFavorito" value="d">
-
-                    <input type="hidden" name="favorito_id" value="<?=$favorite["id"]?>">
-
-                    <button type="submit" class="delete-btn border-0 text-danger" style="background-color: initial;"><i class="fa-solid fa-trash-can" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir curso" data-bs-custom-class="custom-tooltip"></i></button>
-                  </form>
-                </td>
-                </tr>
-                <?php endforeach;?>
-            </tbody>
-          </table>
-
-          <?php else:?>
-            <div>não há favoritos</div>
-          <?php endif;?>
+                  <button type="submit" class="delete-btn border-0 text-danger" style="background-color: initial;"><i class="fa-solid fa-trash-can" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir favorito" data-bs-custom-class="custom-tooltip"></i></button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
+        <?php endforeach;?>
+        
+        <?php else:?>
+          <div class="text-center">Não há favoritos</div>
+        <?php endif;?>
+        
       </div>
     </div>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+     <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
       crossorigin="anonymous"
     ></script>
+
+    <script>
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    </script>
   </body>
 </html>

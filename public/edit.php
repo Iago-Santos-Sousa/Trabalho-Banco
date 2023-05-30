@@ -55,6 +55,11 @@ include_once("../config/process.php");
               >
             </li>
             <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="./addreceita.php"
+                >Adicionar receita</a
+              >
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="./favoritos.php">Favoritos</a>
             </li>
             <li class="nav-item">
@@ -71,10 +76,6 @@ include_once("../config/process.php");
 
     <!-- Formulário -->
     <div class="container px-3" style="padding-top: 10rem;">
-
-    <!-- id do usuario -->
-    <!-- <div><?php echo $userID;?></div> -->
-    <!-- id do usuario -->
 
       <form method="POST" action="../config/process.php">
         <input type="hidden" name="usuarioID" value="<?=$_GET["id"]?>">
@@ -103,7 +104,7 @@ include_once("../config/process.php");
           <div class="col-md-4">
             <div class="form-floating">
               <input
-                type="text"
+                type="number"
                 class="form-control focus-ring focus-ring-primary"
                 id="tempo_preparo"
                 name="tempo_preparo"
@@ -116,46 +117,21 @@ include_once("../config/process.php");
         </div>
 
         <!-- segunda linha -->
-        <div class="row justify-content-center mt-3">
-          <div class="col-md-4">
-            <div class="form-floating mb-3">
-              <input
-                type="text"
-                class="form-control focus-ring focus-ring-primary"
-                id="ingrediente"
-                name="ingrediente"
-                value="<?=$onlyContato["nome_ingrediente"]?>"
-                placeholder="Ingrediente"
-              />
-              <label for="ingrediente">Ingredientes</label>
+        <div>
+          <div class="row justify-content-center mt-3">
+            <div class="col-md-8 col-lg-6">
+              <div class="form-floating">
+                <textarea
+                  class="form-control"
+                  placeholder="Ingrediente"
+                  id="ingrediente"
+                  name="ingrediente"
+                  style="height: 100px"
+                ><?=$onlyContato["nome_ingrediente"]?></textarea>
+                <label for="ingrediente">Ingredientes</label>
+              </div>
             </div>
           </div>
-
-          <div class="col-md-4">
-            <div class="form-floating mb-3">
-              <input
-                type="text"
-                class="form-control focus-ring focus-ring-primary"
-                id="quantidades"
-                name="quantidades"
-                value="<?=$onlyContato["ingredientes_qtd"]?>"
-                placeholder="Quantidade"
-              />
-              <label for="quantidades">Quantidades</label>
-            </div>
-          </div>
-
-          <!-- <div class="col-md-4">
-            <div class="form-floating mb-3">
-              <input
-                type="text"
-                class="form-control focus-ring focus-ring-primary"
-                id="quantidades"
-                placeholder="uni_medida"
-              />
-              <label for="uni_medida">Unidade de medida</label>
-            </div>
-          </div> -->
         </div>
 
         <div class="row justify-content-center mt-3">
