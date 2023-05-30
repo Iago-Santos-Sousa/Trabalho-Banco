@@ -136,6 +136,19 @@ include_once("../config/process.php");
     </div>
 
     <div class="container mt-5 pb-5">
+      <?php
+        if(isset($_SESSION["msgFavorito"])) {
+          echo '
+          <div class="toast-container top-0 start-50 translate-middle-x p-3">
+            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">            
+                <div class="toast-body text-bg-primary">
+                  Adicionado aos favoritos!
+                </div>
+              </div>
+          </div>';
+          unset($_SESSION["msgFavorito"]);
+        }
+      ?>
       <div class="row">
         <?php if(count($AllContatos) >
         0):?>
@@ -208,6 +221,16 @@ include_once("../config/process.php");
     <script>
       const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
       const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    </script>
+
+    <script>
+      // const toastTrigger = document.getElementById('liveToastBtn')
+      const toastLiveExample = document.getElementById('liveToast')
+
+      if (toastLiveExample ) {
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+        toastBootstrap.show()
+      }
     </script>
   </body>
 </html>

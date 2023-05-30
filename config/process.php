@@ -89,9 +89,11 @@ if ( isset($_POST["campo_oculto"])) {
   $idIngrediente = $_POST["id_ingrediente"];
 
   favorito($userID, $idReceita, $idIngrediente, $conn);
-  deletarDados($userID, $idReceita, $idIngrediente, $receitaId, $receitaIngrediente, $conn);
+  // deletarDados($userID, $idReceita, $idIngrediente, $receitaId, $receitaIngrediente, $conn);
   echo "adicionado aos favoritos";
+  $_SESSION["msgFavorito"] = "favorito";
   header('Location:'.'../public/addreceita.php');
+ 
 
 } else if( isset($_POST["deletarFavorito"])) {
   $favoritoID = $_POST["favorito_id"];
