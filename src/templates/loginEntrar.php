@@ -24,12 +24,6 @@ if(isset($_SESSION["alert"])) {
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css"
     />
     <link rel="stylesheet" type="text/css" href="../css/styles.css" />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-      crossorigin="anonymous"
-      defer
-    ></script>
     <title>Document</title>
   </head>
   <body>
@@ -45,7 +39,7 @@ if(isset($_SESSION["alert"])) {
           </div>
         </div>
 
-          <?php
+        <?php
           if($alertaIndex != "") {
             echo '<div class="row justify-content-center"><div class="col-6 col-md-6 col-lg-6 col-xl-5"><div id="liveAlertPlaceholder" class="mt-2"></div></div></div>';
           }
@@ -78,7 +72,6 @@ if(isset($_SESSION["alert"])) {
                   name="password"
                   placeholder="Digite a sua senha"
                 />
-
                 <label for="password" class="form-label"
                   >Digite a sua senha</label
                 >
@@ -107,10 +100,10 @@ if(isset($_SESSION["alert"])) {
       </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous" type="text/javascript"></script>
+    <?php include_once("bootstrap.php");?>
     <script src="../js/senhaTooltip.js" type="text/javascript"></script>
-    <script src="../js/toolTipEmail.js" type="text/javascript"></script>
-    <script src="../js/alertIndex.js" type="text/javascript"></script>
+    <script src="../js/toolTip.js" type="text/javascript"></script>
+    <script src="../js/alertLogin.js" type="text/javascript"></script>
 
   </body>
 </html>
