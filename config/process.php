@@ -35,7 +35,7 @@ if ( isset($_POST["campo_oculto"])) {
   $descricao = $_POST["modo_preparo"];
 
   if( !empty($nomeReceita) && !empty($tempoPreparo) && !empty($ingredientes) && !empty($descricao)) {
-    echo "campo preenchido";
+    // echo "campo preenchido";
 
     criarReceita($userID, $nomeReceita, $tempoPreparo, $descricao, $ingredientes,$quantidades, $conn);
 
@@ -43,8 +43,8 @@ if ( isset($_POST["campo_oculto"])) {
     // header('Location:'.'./process.php');
 
   } else {
-    echo "campo vazio";
-    // header('Location:'.'../public/addreceita.php');
+    // echo "campo vazio";
+    header('Location:'.'../public/addreceita.php');
   }
 
 } elseif(isset($_POST["type"])) {
@@ -53,12 +53,11 @@ if ( isset($_POST["campo_oculto"])) {
   $idIngrediente = $_POST["id_ingrediente"];
   $receitaId = $_POST["receita_id"];
   $receitaIngrediente = $_POST["receita_ingrediente"];
-  echo $valorDelete;
-  echo $idReceita;
-  echo "Deletado";
+  // echo $valorDelete;
+  // echo $idReceita;
+  // echo "Deletado";
   deletarDados($userID, $idReceita, $idIngrediente, $receitaId, $receitaIngrediente, $conn);
   header('Location:'.'../public/addreceita.php');
-
 
 } elseif( isset($_POST["editar"])) {
   $valorEditar = $_POST["editar"];
@@ -72,38 +71,38 @@ if ( isset($_POST["campo_oculto"])) {
   $descricao = $_POST["modo_preparo"];
 
   if( !empty($nomeReceita) && !empty($tempoPreparo) && !empty($ingredientes) && !empty($descricao)) {
-    echo "editado";
+    // echo "editado";
     editarDados($userID, $receitaid, $nomeReceita, $tempoPreparo, $ingredientes, $quantidades, $descricao,$conn);
     // header('Location:'.'../public/edit.php');
     header('Location:'.'../public/addreceita.php');
 
   } else {
-    echo "campos vazios";
+    // echo "campos vazios";
+    header('Location:'.'../public/addreceita.php');
   }
   // header('Location:'.'./process.php');
-  echo $valorEditar . "  ";
-  echo $usuarioID;
+  // echo $valorEditar . "  ";
+  // echo $usuarioID;
   
 } elseif( isset($_POST["favorito"])) {
   $idReceita = $_POST["id_receita"];
   $idIngrediente = $_POST["id_ingrediente"];
-
+  deletarDados($userID, $idReceita, $idIngrediente, $receitaId, $receitaIngrediente, $conn);
   favorito($userID, $idReceita, $idIngrediente, $conn);
   // deletarDados($userID, $idReceita, $idIngrediente, $receitaId, $receitaIngrediente, $conn);
-  echo "adicionado aos favoritos";
+  // echo "adicionado aos favoritos";
   $_SESSION["msgFavorito"] = "favorito";
   header('Location:'.'../public/addreceita.php');
  
-
 } else if( isset($_POST["deletarFavorito"])) {
   $favoritoID = $_POST["favorito_id"];
-  echo $favoritoID;
-  echo "favorito deletado";
+  // echo $favoritoID;
+  // echo "favorito deletado";
   deletarFavorito($favoritoID, $conn);
   header('Location:'.'../public/favoritos.php');
   
 } else {
-  echo "não foi deletado";
+  // echo "não foi deletado";
 }
 
 

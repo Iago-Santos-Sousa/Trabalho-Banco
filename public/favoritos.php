@@ -11,7 +11,7 @@ include_once("../config/process.php");
     <?php
       include_once("../src/templates/header.php");
     ?>
-    <link rel="stylesheet" href="../src/css/cssPublic.css" />
+    <!-- <link rel="stylesheet" href="../src/css/cssPublic.css" /> -->
 
     <title>Document</title>
   </head>
@@ -22,7 +22,7 @@ include_once("../config/process.php");
       data-bs-theme="dark"
     >
       <div class="container-fluid">
-        <a class="navbar-brand" href="../homeSistema.php"
+        <a class="navbar-brand" href="../index.php"
           ><img src="../src/img/icon.png" alt="icon logo"
         /></a>
         <button
@@ -40,7 +40,7 @@ include_once("../config/process.php");
           <ul class="navbar-nav align-items-center">
             <?php if(isset($_SESSION["id"])): ?>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="../homeSistema.php"
+              <a class="nav-link" aria-current="page" href="../index.php"
                 >Home</a
               >
             </li>
@@ -54,31 +54,30 @@ include_once("../config/process.php");
             </li>
             <?php endif; ?>
             <?php if (!isset($_SESSION["id"])): ?>
-            <?php header("Location:"."homeSistema.php"); ?>
+            <?php header("Location:"."index.php"); ?>
             <?php endif; ?>
           </ul>
         </div>
       </div>
     </nav>
 
-     <div class="container pb-5" style="padding-top: 10rem;">
+     <div class="container mt-5 pb-5" style="padding-top: 10rem;">
       <div class="row">
         <?php if(count($AllFavoritos) >
         0):?>
         <?php foreach($AllFavoritos as $favorite):?>
-        <div class="col-md-4">
-          <div class="card border-info border-3 mt-2">
-            
+        <div class="col-md-3 pb-3">
+          <div class="card border-info border-3">
+            <img class="card-img-top img-fluid" src="../src/img/recipe.svg" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title text-center"><?=$favorite["nome"]?></h5>
               <div><hr class="border-3 text-success"></div>
-              <!-- <p class="card-text"><?=$favorite["modo_preparo"]?></p> -->
-              <p class="card-text fw-bold"><?=$favorite["tempo_de_preparo"]?>: Minutos</p>
+              <p class="card-text fw-bold"><i class="fa-regular fa-clock" style="color: #e17c09; cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tempo de preparo" data-bs-custom-class="custom-tooltip"></i> <?=$favorite["tempo_de_preparo"]?>: Minutos</p>
               <p class="card-text text-center d-flex gap-1 justify-content-center flex-wrap">
-                <a type="button" tabindex="0" class="btn btn-primary" role="button" data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="<?=$favorite["nome_ingrediente"]?>">
+                <a type="button" tabindex="0" style="width: 8rem;" class="btn btn-primary" role="button" data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="<?=$favorite["nome_ingrediente"]?>">
                 Ingredientes
                 </a>
-                <a type="button" tabindex="0" class="btn btn-success" role="button" data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="<?=$favorite["descricao"]?>">
+                <a type="button" tabindex="0" style="width: 8rem;" class="btn btn-success" role="button" data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="<?=$favorite["descricao"]?>">
                 Descrição
                 </a>
               </p>
@@ -89,6 +88,14 @@ include_once("../config/process.php");
                   <input type="hidden" name="favorito_id" value="<?=$favorite["id"]?>">
 
                   <button type="submit" class="delete-btn border-0 text-danger" style="background-color: initial;"><i class="fa-solid fa-trash-can" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir favorito" data-bs-custom-class="custom-tooltip"></i></button>
+                </form>
+
+                <form method="POST" action="./pdf/imprimir.php" target="_blank">
+                  <input type="hidden" name="imprimir_pdf" value="pdf">
+
+                  <input type="hidden" name="favorito_id" value="<?=$favorite["id"]?>">
+                  
+                  <button type="submit" class="delete-btn border-0 text-warning" style="background-color: initial;"><i class="fa-solid fa-print" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Imprimir receita" data-bs-custom-class="custom-tooltip"></i></button>
                 </form>
               </div>
             </div>

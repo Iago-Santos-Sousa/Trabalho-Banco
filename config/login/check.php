@@ -14,15 +14,19 @@ if ($method === "POST") {
 
 		if (verificarUser($email, $senha) == true) {
 			if(isset($_SESSION["id"]) || isset($_SESSION["email"]) || isset($_SESSION["senha"])) {
-				header('Location:'. '../../homeSistema.php'); 
+				header('Location:'. '../../index.php'); 
 	
 			} else {
-				header('Location:'. '../../homeSistema.php');
+				unset($_SESSION["id"]);
+				unset($_SESSION["email"]);
+				unset($_SESSION["senha"]);
 				session_destroy();
+				header('Location:'. '../../index.php');
 			}
 		} else {
-			header("Location:"."../../src/templates/loginEntrar.php");
 			$_SESSION["alert"] = "alerta";
+			header("Location:"."../../src/templates/loginEntrar.php");
+			
 		}
 			
 	} else {

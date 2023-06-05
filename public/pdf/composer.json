@@ -1,0 +1,17 @@
+{
+  "name": "iagos/pdf",
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Iago-Santos-Sousa",
+      "email": "iago.santos.sousa@gmail.com"
+    }
+  ],
+  "require": {
+    "dompdf/dompdf": "^2.0"
+  }
+}

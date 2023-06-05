@@ -153,6 +153,21 @@ function todosFavoritos($userID, $conn) {
   return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function umFavorito($userID, $favoritoID, $conn) {
+  $query = "SELECT favoritos.id, receitas.nome, receitas.tempo_de_preparo, ingredientes.nome AS nome_ingrediente, 
+  ingredientes.quantidade, receitas.descricao
+  FROM favoritos
+  INNER JOIN usuario ON favoritos.id_usuario = usuario.id
+  INNER JOIN ingredientes ON favoritos.id_ingredientes = ingredientes.id
+  INNER JOIN receitas ON favoritos.id_receita = receitas.id
+  WHERE usuario.id = :userID AND favoritos.id = :favoritoID";
+  $stmt= $conn->prepare($query);
+  $stmt->bindParam(":userID", $userID, PDO::PARAM_INT);
+  $stmt->bindParam(":favoritoID", $favoritoID, PDO::PARAM_INT);
+  $stmt->execute();
+  return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
 function favorito($userID, $idReceita, $idIngrediente, $conn) {
   $query = "INSERT INTO favoritos (id_usuario, id_receita, id_ingredientes)
   VALUES (:userID, :idReceita, :idIngrediente)";

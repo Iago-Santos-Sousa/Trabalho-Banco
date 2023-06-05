@@ -20,7 +20,7 @@ include_once("../config/process.php");
       data-bs-theme="dark"
     >
       <div class="container-fluid">
-        <a class="navbar-brand" href="../homeSistema.php"
+        <a class="navbar-brand" href="../index.php"
           ><img src="../src/img/icon.png" alt="icon logo"
         /></a>
         <button
@@ -38,7 +38,7 @@ include_once("../config/process.php");
           <ul class="navbar-nav align-items-center">
             <?php if(isset($_SESSION["id"])): ?>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="../homeSistema.php"
+              <a class="nav-link" aria-current="page" href="../index.php"
                 >Home</a
               >
             </li>
@@ -50,7 +50,7 @@ include_once("../config/process.php");
             </li>
             <?php endif; ?>
             <?php if (!isset($_SESSION["id"])): ?>
-              <?php header("Location:"."homeSistema.php"); ?>
+              <?php header("Location:"."index.php"); ?>
             <?php endif; ?>
           </ul>
         </div>
@@ -134,11 +134,16 @@ include_once("../config/process.php");
         if(isset($_SESSION["msgFavorito"])) {
           echo '
           <div class="toast-container top-0 start-50 translate-middle-x p-3">
-            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">            
-                <div class="toast-body text-bg-primary">
-                  Adicionado aos favoritos!
-                </div>
-              </div>
+            <div
+              id="liveToast"
+              class="toast d-flex text-bg-primary"
+              role="alert"
+              aria-live="assertive"
+              aria-atomic="true"
+            >
+              <div class="toast-body rounded border-2">Adicionado aos favoritos!</div>
+              <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
           </div>';
           unset($_SESSION["msgFavorito"]);
         }
@@ -147,14 +152,14 @@ include_once("../config/process.php");
         <?php if(count($AllContatos) >
         0):?>
         <?php foreach($AllContatos as $contato):?>
-        <div class="col-md-4">
-          <div class="card border-info border-3 mt-2">
-            
+        <div class="col-md-3 pb-3">
+          <div class="card border-info border-3">
+            <img class="card-img-top img-fluid" src="../src/img/recipe.svg" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title text-center"><?=$contato["nome_receita"]?></h5>
               <div><hr class="border-3 text-success"></div>
               <!-- <p class="card-text"><?=$contato["modo_preparo"]?></p> -->
-              <p class="card-text fw-bold"><?=$contato["tempo_preparo"]?>: Minutos</p>
+              <p class="card-text fw-bold"><i class="fa-regular fa-clock" style="color: #e17c09; cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tempo de preparo" data-bs-custom-class="custom-tooltip"></i> <?=$contato["tempo_preparo"]?>: Minutos</p>
               <p class="card-text text-center d-flex gap-1 justify-content-center flex-wrap">
                 <a type="button" style="width: 8rem;" tabindex="0" class="btn btn-primary" role="button" data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="<?=$contato["nome_ingrediente"]?>">
                 Ingredientes

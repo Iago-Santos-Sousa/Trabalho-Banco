@@ -20,7 +20,7 @@ include_once("../config/process.php");
       data-bs-theme="dark"
     >
       <div class="container-fluid">
-        <a class="navbar-brand" href="../homeSistema.php"
+        <a class="navbar-brand" href="../index.php"
           ><img src="../src/img/icon.png" alt="icon logo"
         /></a>
         <button
@@ -38,7 +38,7 @@ include_once("../config/process.php");
           <ul class="navbar-nav align-items-center">
             <?php if(isset($_SESSION["id"])): ?>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="../homeSistema.php"
+              <a class="nav-link" aria-current="page" href="../index.php"
                 >Home</a
               >
             </li>
@@ -55,7 +55,7 @@ include_once("../config/process.php");
             </li>
             <?php endif; ?>
             <?php if (!isset($_SESSION["id"])): ?>
-              <?php header("Location:"."homeSistema.php"); ?>
+              <?php header("Location:"."index.php"); ?>
             <?php endif; ?>
           </ul>
         </div>

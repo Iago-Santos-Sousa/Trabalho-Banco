@@ -20,7 +20,6 @@ CREATE TABLE ingredientes (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(255) NOT NULL,
     quantidade VARCHAR(50)
-    -- unidade VARCHAR(50),
 );
 
 CREATE TABLE usuarios_receitas (
@@ -69,8 +68,8 @@ INSERT INTO favoritos (id_usuario, id_receita, id_ingredientes)
 VALUES (1, 15, 15);
 
 -- query favoritos
-SELECT favoritos.id, receitas.nome, receitas.tempo_de_preparo, ingredientes.nome AS nome_ingrediente, 
-ingredientes.quantidade, receitas.descricao
+SELECT favoritos.id, receitas.nome, receitas.tempo_de_preparo, ingredientes.nome AS 
+nome_ingrediente, ingredientes.quantidade, receitas.descricao
 FROM favoritos
 INNER JOIN usuario ON favoritos.id_usuario = usuario.id
 INNER JOIN ingredientes ON favoritos.id_ingredientes = ingredientes.id
@@ -106,7 +105,7 @@ T2.nome = 3, T2.quantidade = 3
 WHERE T1.id = 6 AND T3.id_usuario = 1;
 
 -- query delete favoritos
-DELETE FROM favoritos WHERE id = 1;
+DELETE FROM favoritos WHERE id > 0;
 
 
 
