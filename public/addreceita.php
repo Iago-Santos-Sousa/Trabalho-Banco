@@ -119,10 +119,22 @@ include_once("../config/process.php");
           </div>
         </div>
 
+        <?php
+          if( isset($_SESSION["campo-vazio"])) {
+            echo '
+            <div class="row">
+              <div class="col pt-3">
+                <p class="text-center text-danger">Preencha todos os campos!</p>
+              </div>
+            </div>';
+            unset($_SESSION["campo-vazio"]);
+          }
+        ?>
+
         <!-- Botão submit -->
-        <div class="row justify-content-center mt-4">
+        <div class="row justify-content-center pt-4">
           <div class="col-auto">
-            <input type="hidden" name="campo_oculto" value="create" />
+            <input type="hidden" name="criar-receita" value="create" />
             <button type="submit" class="btn btn-primary">Adicionar</button>
           </div>
         </div>
@@ -169,7 +181,7 @@ include_once("../config/process.php");
                 </a>
               </p>
               <div class="acoes d-flex">
-                <a class="lapis text-center" href="./edit.php?receita_id=<?=$contato["receita_id"]?>&id=<?=$contato["id_usuario"]?>"><i class="fa-solid fa-pencil text-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Editar receita" data-bs-custom-class="custom-tooltip"></i></a>
+                <a class="lapis text-center" href="./edit.php?receita_id=<?=$contato["receita_id"]?>"><i class="fa-solid fa-pencil text-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Editar receita" data-bs-custom-class="custom-tooltip"></i></a>
 
                 <form method="POST" action="../config/process.php">
                   <input type="hidden" name="favorito" value="favoritos">
@@ -186,7 +198,7 @@ include_once("../config/process.php");
                 </form>
 
                 <form method="POST" action="../config/process.php">
-                  <input type="hidden" name="type" value="delete">
+                  <input type="hidden" name="deletar-receita" value="delete">
 
                   <input type="hidden" name="id_receita" value="<?=$contato["id_receita"]?>">
 

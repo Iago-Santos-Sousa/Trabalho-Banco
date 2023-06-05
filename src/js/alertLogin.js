@@ -12,7 +12,6 @@ const appendAlert = (message, type) => {
   alertPlaceholder.append(wrapper);
 };
 
-const alertTrigger = document.getElementById("liveAlertBtn");
 if (alertPlaceholder) {
   appendAlert("Usuário ou senha incorretos!", "danger");
 }

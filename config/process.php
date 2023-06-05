@@ -3,7 +3,6 @@
 include_once("conn.php");
 include_once("funcoes.php");
 
-$id;
 $receitaID;
 $userID;
 $onlyContato = [];
@@ -15,18 +14,18 @@ if (isset($_SESSION["id"])) {
 }
 
 if(!empty($_GET)) {
-  $id = $_GET["id"];
   $receitaID = $_GET["receita_id"];
+  $onlyContato = umRegistro($userID, $receitaID, $conn);
 }
 
-if(!empty($id) && !empty($receitaID)) {
-  $onlyContato = umRegistro($id, $receitaID, $conn);
-} 
+// if(!empty($receitaID)) {
+//   $onlyContato = umRegistro($userID, $receitaID, $conn);
+// } 
 
 $AllContatos = allRegistros($userID, $conn);
 $AllFavoritos = todosFavoritos($userID, $conn);
 
-if ( isset($_POST["campo_oculto"])) {
+if ( !empty($_POST["criar-receita"])) {
   $valorOculto = $_POST["campo_oculto"];
   $nomeReceita = $_POST["nome_receita"];
   $tempoPreparo = $_POST["tempo_preparo"];
@@ -45,10 +44,11 @@ if ( isset($_POST["campo_oculto"])) {
   } else {
     // echo "campo vazio";
     header('Location:'.'../public/addreceita.php');
+    $_SESSION["campo-vazio"] = "";
   }
 
-} elseif(isset($_POST["type"])) {
-  $valorDelete = $_POST["type"];
+} elseif(!empty($_POST["deletar-receita"])) {
+  $valorDelete = $_POST["deletar-receita"];
   $idReceita = $_POST["id_receita"];
   $idIngrediente = $_POST["id_ingrediente"];
   $receitaId = $_POST["receita_id"];
@@ -58,12 +58,12 @@ if ( isset($_POST["campo_oculto"])) {
   // echo "Deletado";
   deletarDados($userID, $idReceita, $idIngrediente, $receitaId, $receitaIngrediente, $conn);
   header('Location:'.'../public/addreceita.php');
-
-} elseif( isset($_POST["editar"])) {
+  // !empty($_POST["editar"]
+} 
+elseif( !empty($_POST["editar"])) {
   $valorEditar = $_POST["editar"];
   $receitaid = $_POST["receitaID"];
-  $usuarioID = $_POST["usuarioID"];
-
+  // $usuarioID = $_POST["usuarioID"];
   $nomeReceita = $_POST["nome_receita"];
   $tempoPreparo = $_POST["tempo_preparo"];
   $ingredientes = $_POST["ingrediente"];
@@ -77,14 +77,14 @@ if ( isset($_POST["campo_oculto"])) {
     header('Location:'.'../public/addreceita.php');
 
   } else {
-    // echo "campos vazios";
     header('Location:'.'../public/addreceita.php');
+    // header('Location:'.'../public/edit.php');
+    // exit();
+    $_SESSION["campo-vazio-editar"] = "";
   }
-  // header('Location:'.'./process.php');
-  // echo $valorEditar . "  ";
-  // echo $usuarioID;
   
-} elseif( isset($_POST["favorito"])) {
+}
+elseif( !empty($_POST["favorito"])) {
   $idReceita = $_POST["id_receita"];
   $idIngrediente = $_POST["id_ingrediente"];
   deletarDados($userID, $idReceita, $idIngrediente, $receitaId, $receitaIngrediente, $conn);
@@ -94,16 +94,19 @@ if ( isset($_POST["campo_oculto"])) {
   $_SESSION["msgFavorito"] = "favorito";
   header('Location:'.'../public/addreceita.php');
  
-} else if( isset($_POST["deletarFavorito"])) {
+} elseif( !empty($_POST["deletarFavorito"])) {
   $favoritoID = $_POST["favorito_id"];
   // echo $favoritoID;
   // echo "favorito deletado";
   deletarFavorito($favoritoID, $conn);
   header('Location:'.'../public/favoritos.php');
   
-} else {
-  // echo "não foi deletado";
 }
+
+
+  
+
+
 
 
 

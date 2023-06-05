@@ -61,13 +61,22 @@ include_once("../config/process.php");
         </div>
       </div>
     </nav>
-
+    
     <!-- Formulário -->
     <div class="container px-3" style="padding-top: 10rem;">
+    <?php
+    
+      if(!empty($onlyContato)) {
+        echo "array cheio";
+      } else {
+        echo "array vazio";
 
+      }
+    
+    ?>
       <form method="POST" action="../config/process.php">
-        <input type="hidden" name="usuarioID" value="<?=$_GET["id"]?>">
-        <input type="hidden" name="receitaID" value="<?=$_GET["receita_id"]?>">
+        <input type="hidden" name="editar" value="editar-receitas">
+        <input type="hidden" name="receitaID" value="<?=$receitaID?>">
         <?php
           // $id = $_GET["id"];
           // $receitaID = $_GET["receita_id"];
