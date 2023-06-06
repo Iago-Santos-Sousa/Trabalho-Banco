@@ -121,12 +121,7 @@ include_once("../config/process.php");
 
         <?php
           if( isset($_SESSION["campo-vazio"])) {
-            echo '
-            <div class="row">
-              <div class="col pt-3">
-                <p class="text-center text-danger">Preencha todos os campos!</p>
-              </div>
-            </div>';
+            echo $_SESSION["campo-vazio"];
             unset($_SESSION["campo-vazio"]);
           }
         ?>
@@ -144,19 +139,7 @@ include_once("../config/process.php");
     <div class="container mt-5 pb-5">
       <?php
         if(isset($_SESSION["msgFavorito"])) {
-          echo '
-          <div class="toast-container top-0 start-50 translate-middle-x p-3">
-            <div
-              id="liveToast"
-              class="toast d-flex text-bg-primary"
-              role="alert"
-              aria-live="assertive"
-              aria-atomic="true"
-            >
-              <div class="toast-body rounded border-2">Adicionado aos favoritos!</div>
-              <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-          </div>';
+          echo $_SESSION["msgFavorito"];
           unset($_SESSION["msgFavorito"]);
         }
       ?>

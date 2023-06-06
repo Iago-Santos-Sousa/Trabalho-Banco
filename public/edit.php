@@ -76,7 +76,7 @@ include_once("../config/process.php");
     ?>
       <form method="POST" action="../config/process.php">
         <input type="hidden" name="editar" value="editar-receitas">
-        <input type="hidden" name="receitaID" value="<?=$receitaID?>">
+        <input type="hidden" name="receitaID" value="<?=$_GET["receita_id"]?>">
         <?php
           // $id = $_GET["id"];
           // $receitaID = $_GET["receita_id"];

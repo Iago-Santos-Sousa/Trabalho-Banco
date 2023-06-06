@@ -109,7 +109,7 @@ if ( $method === "POST") {
 			}
 
 		if ($senha != $confirmarsenha) {
-			$_SESSION["msg"] = 'Senha errada!';
+			$_SESSION["msg-senha-errada"] = '<p class="text-danger">Confirme a sua senha corretamente.</p>';
 			exit();
 
 		} else {
@@ -118,7 +118,7 @@ if ( $method === "POST") {
 				header("Location:"."../../src/templates/loginEntrar.php");
 				
 			} else {
-				$_SESSION["msg2"] = "<div>Senha inválida. A senha deve conter pelo menos 8 caracteres, incluindo pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.</div>";
+				$_SESSION["msg2"] = '<p class="text-danger">Senha inválida. A senha deve conter pelo menos 8 caracteres, incluindo pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.</p>';
 				header("Location:"."../../src/templates/register.php");
 				// return;
 				exit();
@@ -127,7 +127,7 @@ if ( $method === "POST") {
 		
 	
 	}	else {
-		$_SESSION["alerta"] = 'informe os dados!';
+		$_SESSION["alerta-senha-vazia"] = '<p class="text-danger">Preencha todos os campos!</p>';
 		header("Location:"."../../src/templates/register.php");
 	}
 	

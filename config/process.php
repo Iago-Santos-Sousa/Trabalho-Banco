@@ -13,10 +13,19 @@ if (isset($_SESSION["id"])) {
   $userID = $_SESSION["id"];
 }
 
+// if(isset($_GET["receitaid-param"])) {
+//   $receitaID = $_GET["receitaid-param"];
+//   $onlyContato = umRegistro($userID, $receitaID, $conn);
+// } 
 if(!empty($_GET)) {
   $receitaID = $_GET["receita_id"];
-  $onlyContato = umRegistro($userID, $receitaID, $conn);
 }
+
+if(!empty($receitaID)) {
+  $onlyContato = umRegistro($userID, $receitaID, $conn);
+} 
+
+// $onlyContato = umRegistro($userID, $receitaID, $conn);
 
 // if(!empty($receitaID)) {
 //   $onlyContato = umRegistro($userID, $receitaID, $conn);
@@ -44,7 +53,12 @@ if ( !empty($_POST["criar-receita"])) {
   } else {
     // echo "campo vazio";
     header('Location:'.'../public/addreceita.php');
-    $_SESSION["campo-vazio"] = "";
+    $_SESSION["campo-vazio"] = '
+    <div class="row">
+      <div class="col pt-3">
+        <p class="text-center text-danger">Preencha todos os campos!</p>
+      </div>
+    </div>';
   }
 
 } elseif(!empty($_POST["deletar-receita"])) {
@@ -79,8 +93,7 @@ elseif( !empty($_POST["editar"])) {
   } else {
     header('Location:'.'../public/addreceita.php');
     // header('Location:'.'../public/edit.php');
-    // exit();
-    $_SESSION["campo-vazio-editar"] = "";
+    exit();
   }
   
 }
@@ -91,7 +104,19 @@ elseif( !empty($_POST["favorito"])) {
   favorito($userID, $idReceita, $idIngrediente, $conn);
   // deletarDados($userID, $idReceita, $idIngrediente, $receitaId, $receitaIngrediente, $conn);
   // echo "adicionado aos favoritos";
-  $_SESSION["msgFavorito"] = "favorito";
+  $_SESSION["msgFavorito"] = '
+  <div class="toast-container top-0 start-50 translate-middle-x p-3">
+    <div
+      id="liveToast"
+      class="toast d-flex text-bg-primary"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+    >
+      <div class="toast-body rounded border-2">Adicionado aos favoritos!</div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>';
   header('Location:'.'../public/addreceita.php');
  
 } elseif( !empty($_POST["deletarFavorito"])) {

@@ -8,7 +8,7 @@ session_start();
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+   <?php include_once("../templates/header.php");?>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css"
@@ -64,10 +64,6 @@ session_start();
               <?php
                 if(isset($_SESSION["alert-input"]) || isset($_SESSION["alert-email"])) {
                   echo $_SESSION["alert-input"];
-                  // echo '<script type="text/javascript">
-                  // const b = document.getElementById("email");
-                  // b.classList.add("is-invalid");
-                  // </script>';
                   echo $_SESSION["alert-email"];
                   unset($_SESSION["alert-input"]);
                   unset($_SESSION["alert-email"]);
@@ -97,7 +93,7 @@ session_start();
               <label for="password" class="form-label">Digite sua senha</label>
               <?php
                 if(isset($_SESSION["msg2"])) {
-                  echo '<p class="text-danger">Senha inválida. A senha deve conter pelo menos 8 caracteres, incluindo pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.</p>';
+                  echo $_SESSION["msg2"];
                   unset($_SESSION["msg2"]);
                 }
               ?>
@@ -115,16 +111,16 @@ session_start();
                 >Confirme sua senha</label
               >
               <?php
-                if(isset($_SESSION["msg"])) {
-                  echo '<p class="text-danger">Confirme a sua senha corretamente.</p>';
-                  unset($_SESSION["msg"]);
+                if(isset($_SESSION["msg-senha-errada"])) {
+                  echo $_SESSION["msg-senha-errada"];
+                  unset($_SESSION["msg-senha-errada"]);
                 }
               ?>
             </div>
             <?php
-              if(isset($_SESSION["alerta"])) {
-                echo '<p class="text-danger">Preencha todos os campos!</p>';
-                unset($_SESSION["alerta"]);
+              if(isset($_SESSION["alerta-senha-vazia"])) {
+                echo $_SESSION["alerta-senha-vazia"];
+                unset($_SESSION["alerta-senha-vazia"]);
               }
             ?>
             <input type="submit" class="btn btn-primary" value="Cadastrar" />
@@ -147,6 +143,6 @@ session_start();
       </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous" type="text/javascript"></script>
+    <?php include_once("../templates/bootstrap.php");?>
   </body>
 </html>

@@ -1,11 +1,6 @@
 <?php
 include_once("../../config/conn.php");
-$alertaIndex = "";
 
-if(isset($_SESSION["alert"])) {
-	$alertaIndex = $_SESSION["alert"];
-	$_SESSION["alert"] = "";
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,8 +35,9 @@ if(isset($_SESSION["alert"])) {
         </div>
 
         <?php
-          if($alertaIndex != "") {
-            echo '<div class="row justify-content-center"><div class="col-6 col-md-6 col-lg-6 col-xl-5"><div id="liveAlertPlaceholder" class="mt-2"></div></div></div>';
+          if(isset($_SESSION["alert"])) {
+            echo $_SESSION["alert"];
+            unset($_SESSION["alert"]);
           }
         ?>
       

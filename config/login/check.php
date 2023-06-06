@@ -24,13 +24,13 @@ if ($method === "POST") {
 				header('Location:'. '../../index.php');
 			}
 		} else {
-			$_SESSION["alert"] = "alerta";
+			$_SESSION["alert"] = '<div class="row justify-content-center"><div class="col-6 col-md-6 col-lg-6 col-xl-5"><div id="liveAlertPlaceholder" class="mt-2"></div></div></div>';
 			header("Location:"."../../src/templates/loginEntrar.php");
 			
 		}
 			
 	} else {
-		$_SESSION["alert"] = "alerta";
+		$_SESSION["alert"] = '<div class="row justify-content-center"><div class="col-6 col-md-6 col-lg-6 col-xl-5"><div id="liveAlertPlaceholder" class="mt-2"></div></div></div>';
 		header("Location:"."../../src/templates/loginEntrar.php");
 	}
 	
