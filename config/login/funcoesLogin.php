@@ -13,8 +13,8 @@ function validarSenha($senha) {
 
 function inserirUser($nome, $sobrenome, $email, $senha) {
   global $conn;
-  $stmt = $conn->prepare("INSERT INTO usuario (nome, sobre_nome, email, senha) VALUES (:nome, :sobre_nome, :email, :senha)");
-  $stmt->bindParam(":nome", $nome);
+  $stmt = $conn->prepare("INSERT INTO usuarios (nome_usuarios, sobre_nome, email, senha) VALUES (:nome_usuarios, :sobre_nome, :email, :senha)");
+  $stmt->bindParam(":nome_usuarios", $nome);
   $stmt->bindParam(":sobre_nome", $sobrenome);
   $stmt->bindParam(":email", $email);
   $stmt->bindParam(":senha", $senha);
@@ -23,7 +23,7 @@ function inserirUser($nome, $sobrenome, $email, $senha) {
 
 function verificarUser($email, $senha) {
   global $conn;
-  $sql = "SELECT * FROM usuario WHERE email = :email and senha = :senha";
+  $sql = "SELECT * FROM usuarios WHERE email = :email and senha = :senha";
   $stmt = $conn->prepare($sql);
   $stmt->bindParam(":email", $email);
   $stmt->bindParam(":senha", $senha);
@@ -31,7 +31,7 @@ function verificarUser($email, $senha) {
 
   if($stmt->rowCount() > 0) {
     $dado = $stmt->fetch();
-    $_SESSION["id"] = $dado["id"];
+    $_SESSION["id_usuarios"] = $dado["id_usuarios"];
     $_SESSION["email"] = $dado["email"];
     $_SESSION["senha"] = $dado["senha"];
     return true;

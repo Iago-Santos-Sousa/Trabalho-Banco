@@ -22,7 +22,7 @@ session_start();
       <div class="row gx-5">
         <div class="col-md-6">
           <h2>Realize o seu cadastro</h2>
-          <form class="" action="../../config/login/login.php" method="POST">
+          <form class="" action="../../config/login/criarLogin.php" method="POST">
             <?php
               if(isset($_SESSION["nome-user"]) && isset($_SESSION["sobre-nome-user"])) {
                 echo $_SESSION["nome-user"];

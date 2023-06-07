@@ -12,7 +12,7 @@ CREATE TABLE usuario (
 CREATE TABLE receitas (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(255) NOT NULL,
-    tempo_de_preparo INT(11) NOT NULL,
+    tempo_de_preparo INT NOT NULL,
     descricao TEXT NOT NULL
 );
 
@@ -26,16 +26,16 @@ CREATE TABLE usuarios_receitas (
   id INT AUTO_INCREMENT PRIMARY KEY,
   id_usuario INT,
   id_receita INT,
-  FOREIGN KEY (id_usuario) REFERENCES usuario(id),
-  FOREIGN KEY (id_receita) REFERENCES receitas(id)
+  FOREIGN KEY (id_usuario) REFERENCES usuario(id) ON DELETE CASCADE,
+  FOREIGN KEY (id_receita) REFERENCES receitas(id) ON DELETE CASCADE
 );
 
 CREATE TABLE receitas_ingredientes (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	id_receita INT,
 	id_ingrediente INT,
-	FOREIGN KEY (id_receita) REFERENCES receitas(id),
-	FOREIGN KEY (id_ingrediente) REFERENCES ingredientes(id)
+	FOREIGN KEY (id_receita) REFERENCES receitas(id) ON DELETE CASCADE,
+	FOREIGN KEY (id_ingrediente) REFERENCES ingredientes(id) ON DELETE CASCADE
 );
 
 CREATE TABLE favoritos (
@@ -53,10 +53,10 @@ INSERT INTO usuario (nome, sobre_nome, email, senha)
 VALUES ("b", "b", "b@gmail.com", "123");
 
 INSERT INTO receitas (nome, tempo_de_preparo, descricao)
-VALUES ("Pão de queijo", 50, "Um delicioso pão de queijo");
+VALUES ("Bolo", 50, "Um delicioso bolo");
 
 INSERT INTO ingredientes (nome, quantidade)
-VALUES ("Queijo", "2 fatias");
+VALUES ("chocolate", "5 barras");
 
 INSERT INTO usuarios_receitas (id_usuario, id_receita) 
 VALUES (1, 1);
@@ -65,7 +65,7 @@ INSERT INTO receitas_ingredientes (id_receita, id_ingrediente)
 VALUES (1, 1);
 
 INSERT INTO favoritos (id_usuario, id_receita, id_ingredientes)
-VALUES (1, 15, 15);
+VALUES (1, 1, 1);
 
 -- query favoritos
 SELECT favoritos.id, receitas.nome, receitas.tempo_de_preparo, ingredientes.nome AS 
@@ -90,10 +90,19 @@ INNER JOIN ingredientes ON receitas_ingredientes.id_ingrediente = ingredientes.i
 WHERE usuario.id = 1;
 
 -- query delete
-DELETE FROM usuarios_receitas WHERE id_receita = 1 AND id_usuario = 1;
-DELETE FROM receitas_ingredientes WHERE id_receita = 1 AND id_ingrediente = 1;
-DELETE FROM receitas WHERE id = 1;
-DELETE FROM ingredientes WHERE id = 1;
+-- DELETE FROM usuarios_receitas WHERE id_receita = 1 AND id_usuario = 1;
+-- DELETE FROM receitas_ingredientes WHERE id_receita = 2 AND id_ingrediente = 2;
+-- DELETE FROM receitas WHERE id = 2;
+-- DELETE FROM ingredientes WHERE id = 2;
+DELETE receitas
+FROM receitas
+JOIN usuario ON usuario.id = usuario.id
+WHERE receitas.id = 1 AND usuario.id = 1;
+
+DELETE ingredientes
+FROM ingredientes
+JOIN usuario ON usuario.id = usuario.id
+WHERE ingredientes.id = 1 AND usuario.id = 1;
 
 -- query update
 UPDATE receitas AS T1

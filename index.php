@@ -38,7 +38,7 @@ session_start();
         </button>
         <div class="collapse navbar-collapse p-3" id="navbarNav">
           <ul class="navbar-nav align-items-center">
-            <?php if(isset($_SESSION["id"])): ?>
+            <?php if(isset($_SESSION["id_usuarios"])): ?>
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="./public/addreceita.php"
                 >Adicionar receita</a
@@ -48,10 +48,10 @@ session_start();
               <a class="nav-link" href="./public/favoritos.php">Favoritos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./config/login/sair.php">Sair</a>
+              <a class="nav-link" href="./config/login/logout.php">Sair</a>
             </li>
             <?php endif; ?>
-            <?php if (!isset($_SESSION["id"])): ?>
+            <?php if (!isset($_SESSION["id_usuarios"])): ?>
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="./src/templates/loginEntrar.php"
                 >Login</a

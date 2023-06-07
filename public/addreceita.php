@@ -1,5 +1,7 @@
 <?php
 include_once("../config/process.php");
+// include_once("../config/funcoes.php");
+$todosRegistrosReceitasArray = todosRegistrosReceitas($userID);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +38,7 @@ include_once("../config/process.php");
         </button>
         <div class="collapse navbar-collapse p-3" id="navbarNav">
           <ul class="navbar-nav align-items-center">
-            <?php if(isset($_SESSION["id"])): ?>
+            <?php if(isset($_SESSION["id_usuarios"])): ?>
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="../index.php"
                 >Home</a
@@ -46,10 +48,10 @@ include_once("../config/process.php");
               <a class="nav-link" href="./favoritos.php">Favoritos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../config/login/sair.php">Sair</a>
+              <a class="nav-link" href="../config/login/logout.php">Sair</a>
             </li>
             <?php endif; ?>
-            <?php if (!isset($_SESSION["id"])): ?>
+            <?php if (!isset($_SESSION["id_usuarios"])): ?>
               <?php header("Location:"."index.php"); ?>
             <?php endif; ?>
           </ul>
@@ -59,6 +61,7 @@ include_once("../config/process.php");
 
     <!-- Formulário -->
     <div class="container px-3" style="padding-top: 10rem;">
+    
       <form method="POST" action="../config/process.php">
         <div class="row justify-content-center">
           <div class="col-md-4">
@@ -144,38 +147,36 @@ include_once("../config/process.php");
         }
       ?>
       <div class="row">
-        <?php if(count($AllContatos) >
+        <?php if(count($todosRegistrosReceitasArray) >
         0):?>
-        <?php foreach($AllContatos as $contato):?>
+        <?php foreach($todosRegistrosReceitasArray as $contato):?>
         <div class="col-md-3 pb-3">
           <div class="card border-info border-3">
             <img class="card-img-top img-fluid" src="../src/img/recipe.svg" alt="Card image cap">
             <div class="card-body">
-              <h5 class="card-title text-center"><?=$contato["nome_receita"]?></h5>
+              <h5 class="card-title text-center"><?=$contato["nome_receitas"]?></h5>
               <div><hr class="border-3 text-success"></div>
-              <!-- <p class="card-text"><?=$contato["modo_preparo"]?></p> -->
-              <p class="card-text fw-bold"><i class="fa-regular fa-clock" style="color: #e17c09; cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tempo de preparo" data-bs-custom-class="custom-tooltip"></i> <?=$contato["tempo_preparo"]?>: Minutos</p>
+              <p class="card-text fw-bold"><i class="fa-regular fa-clock" style="color: #e17c09; cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tempo de preparo" data-bs-custom-class="custom-tooltip"></i> <?=$contato["tempo_de_preparo"]?>: Minutos</p>
               <p class="card-text text-center d-flex gap-1 justify-content-center flex-wrap">
-                <a type="button" style="width: 8rem;" tabindex="0" class="btn btn-primary" role="button" data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="<?=$contato["nome_ingrediente"]?>">
+                <a type="button" style="width: 8rem;" tabindex="0" class="btn btn-primary" role="button" data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="<?=$contato["nome_ingredientes"]?>">
                 Ingredientes
                 </a>
-                <a type="button" tabindex="0" style="width: 8rem;" class="btn btn-success" role="button" data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="<?=$contato["modo_preparo"]?>">
+                <a type="button" tabindex="0" style="width: 8rem;" class="btn btn-success" role="button" data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="<?=$contato["descricao"]?>">
                 Descrição
                 </a>
               </p>
               <div class="acoes d-flex">
-                <a class="lapis text-center" href="./edit.php?receita_id=<?=$contato["receita_id"]?>"><i class="fa-solid fa-pencil text-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Editar receita" data-bs-custom-class="custom-tooltip"></i></a>
+                <form action="edit.php" method="POST">
+                  <input type="hidden" name="receitaID" value="<?=$contato["id_receitas"]?>">
+
+                  <button type="submit" class="delete-btn border-0 text-success" style="background-color: initial;"><i class="fa-solid fa-pencil text-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Editar receita" data-bs-custom-class="custom-tooltip"></i></button>
+                </form>
+                <!-- <a class="lapis text-center" href="edit.php?receita_id=<?=$contato["id_receitas"]?>"><i class="fa-solid fa-pencil text-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Editar receita" data-bs-custom-class="custom-tooltip"></i></a> -->
 
                 <form method="POST" action="../config/process.php">
                   <input type="hidden" name="favorito" value="favoritos">
 
-                  <input type="hidden" name="id_receita" value="<?=$contato["id_receita"]?>">
-
-                  <input type="hidden" name="id_ingrediente" value="<?=$contato["id_ingrediente"]?>">
-
-                  <input type="hidden" name="receita_id" value="<?=$contato["receita_id"]?>">
-
-                  <input type="hidden" name="receita_ingrediente" value="<?=$contato["receita_ingrediente"]?>">
+                  <input type="hidden" name="id_receitas" value="<?=$contato["id_receitas"]?>">
 
                   <button type="submit" class="delete-btn border-0 text-success" style="background-color: initial;"><i class="fa-solid fa-star" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Favoritar" data-bs-custom-class="custom-tooltip"></i></button>
                 </form>
@@ -183,13 +184,9 @@ include_once("../config/process.php");
                 <form method="POST" action="../config/process.php">
                   <input type="hidden" name="deletar-receita" value="delete">
 
-                  <input type="hidden" name="id_receita" value="<?=$contato["id_receita"]?>">
+                  <input type="hidden" name="id_receitas" value="<?=$contato["id_receitas"]?>">
 
-                  <input type="hidden" name="id_ingrediente" value="<?=$contato["id_ingrediente"]?>">
-
-                  <input type="hidden" name="receita_id" value="<?=$contato["receita_id"]?>">
-
-                  <input type="hidden" name="receita_ingrediente" value="<?=$contato["receita_ingrediente"]?>">
+                  <input type="hidden" name="id_ingredientes" value="<?=$contato["id_ingredientes"]?>">
 
                   <button type="submit" class="delete-btn border-0 text-danger" style="background-color: initial;"><i class="fa-solid fa-trash-can" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir receita" data-bs-custom-class="custom-tooltip"></i></button>
                 </form>

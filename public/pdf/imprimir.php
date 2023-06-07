@@ -9,7 +9,7 @@ $onlyFavorito = [];
 
 if( isset($_POST["imprimir_pdf"])) {
   $favoritoID = $_POST["favorito_id"];
-  $onlyFavorito = umFavorito($userID, $favoritoID, $conn);
+  $onlyFavorito = umRegistroFavorito($userID, $favoritoID);
   // Carregar HTML para renderizar
   // $html = "<html><body><h1>". $onlyFavorito["nome"] . "</h1></body></html>";
   $dompdf = new Dompdf();
@@ -26,7 +26,7 @@ if( isset($_POST["imprimir_pdf"])) {
   header('Content-Type: application/pdf');
   // echo $output;
   // Saída do PDF
-  $dompdf->stream($onlyFavorito["nome"], ['Attachment' => false]);
+  $dompdf->stream($onlyFavorito["receitas_fa"], ['Attachment' => false]);
   // $dompdf->stream('nome_do_arquivo.pdf');
   // $dompdf->output('imprimir.php', 'F');
 }

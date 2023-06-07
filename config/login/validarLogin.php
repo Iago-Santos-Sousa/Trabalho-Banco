@@ -1,23 +1,20 @@
 <?php
-include_once("./funcoesLogin.php");
+include_once("funcoesLogin.php");
 ?>
 
 <?php  
-$method = $_SERVER["REQUEST_METHOD"];
-$dados = $_POST;
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-if ($method === "POST") {
-
-	if (isset($dados["email"]) && !empty($dados["email"]) && isset($dados["password"]) && !empty($dados["password"]) ) {
-		$email = $dados["email"];
-		$senha = $dados["password"];
+	if (isset($_POST["email"]) && !empty($_POST["email"]) && isset($_POST["password"]) && !empty($_POST["password"]) ) {
+		$email = $_POST["email"];
+		$senha = $_POST["password"];
 
 		if (verificarUser($email, $senha) == true) {
-			if(isset($_SESSION["id"]) || isset($_SESSION["email"]) || isset($_SESSION["senha"])) {
+			if(isset($_SESSION["id_usuarios"]) || isset($_SESSION["email"]) || isset($_SESSION["senha"])) {
 				header('Location:'. '../../index.php'); 
 	
 			} else {
-				unset($_SESSION["id"]);
+				unset($_SESSION["id_usuarios"]);
 				unset($_SESSION["email"]);
 				unset($_SESSION["senha"]);
 				session_destroy();

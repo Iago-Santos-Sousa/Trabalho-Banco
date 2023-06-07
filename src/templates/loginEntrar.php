@@ -42,7 +42,7 @@ include_once("../../config/conn.php");
         ?>
       
         <div class="col-10 col-md-9 col-lg-8 col-xl-8 col-xxl-8">
-          <form action="../../config/login/check.php" method="POST">    
+          <form action="../../config/login/validarLogin.php" method="POST">    
             <div class="input-group mb-3">
               <span class="input-group-text bg-transparent" style="cursor: pointer; border: none; border-bottom: 1px solid #ccc; border-radius: 0;"
               ><i class="bi bi-envelope-at fs-5" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Email"></i></span

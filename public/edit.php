@@ -1,5 +1,13 @@
 <?php
-include_once("../config/process.php");
+include_once("../config/funcoes.php");
+// include_once("../config/editarReceita.php");
+
+if( isset($_POST["receitaID"])) {
+  $_SESSION["receitaIDEditar"] = $_POST["receitaID"];
+}
+
+$umRegistroReceitaArray = umRegistroReceita($userID, $_SESSION["receitaIDEditar"]);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +44,7 @@ include_once("../config/process.php");
         </button>
         <div class="collapse navbar-collapse p-3" id="navbarNav">
           <ul class="navbar-nav align-items-center">
-            <?php if(isset($_SESSION["id"])): ?>
+            <?php if(isset($_SESSION["id_usuarios"])): ?>
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="../index.php"
                 >Home</a
@@ -51,10 +59,10 @@ include_once("../config/process.php");
               <a class="nav-link" href="./favoritos.php">Favoritos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../config/login/sair.php">Sair</a>
+              <a class="nav-link" href="../config/login/logout.php">Sair</a>
             </li>
             <?php endif; ?>
-            <?php if (!isset($_SESSION["id"])): ?>
+            <?php if (!isset($_SESSION["id_usuarios"])): ?>
               <?php header("Location:"."index.php"); ?>
             <?php endif; ?>
           </ul>
@@ -64,25 +72,10 @@ include_once("../config/process.php");
     
     <!-- Formulário -->
     <div class="container px-3" style="padding-top: 10rem;">
-    <?php
-    
-      if(!empty($onlyContato)) {
-        echo "array cheio";
-      } else {
-        echo "array vazio";
+    <!-- <p><?= $_SESSION["receitaIDEditar"]?></p> -->
+      <form method="POST" action="../config/editarReceita.php">
+        <!-- <input type="hidden" name="receitaID" value="<?=$_SESSION["receitaIDEditar"]?>"> -->
 
-      }
-    
-    ?>
-      <form method="POST" action="../config/process.php">
-        <input type="hidden" name="editar" value="editar-receitas">
-        <input type="hidden" name="receitaID" value="<?=$_GET["receita_id"]?>">
-        <?php
-          // $id = $_GET["id"];
-          // $receitaID = $_GET["receita_id"];
-          // $onlyContato = umRegistro($id, $receitaID, $conn);
-          // echo "<div>" . $onlyContato["receita_nome"] . "</div>";
-        ?>
         <div class="row justify-content-center">
           <div class="col-md-4">
             <div class="form-floating mb-3">
@@ -91,7 +84,7 @@ include_once("../config/process.php");
                 class="form-control focus-ring focus-ring-primary"
                 id="nome-receita"
                 name="nome_receita"
-                value="<?=$onlyContato["receita_nome"]?>"
+                value="<?=$umRegistroReceitaArray["nome_receitas"]?>"
                 placeholder="Nome da receita"
               />
               <label for="nome-receita">Nome da receita</label>
@@ -105,7 +98,7 @@ include_once("../config/process.php");
                 class="form-control focus-ring focus-ring-primary"
                 id="tempo_preparo"
                 name="tempo_preparo"
-                value="<?=$onlyContato["tempo_preparo"]?>"
+                value="<?=$umRegistroReceitaArray["tempo_de_preparo"]?>"
                 placeholder="Ingrediente"
               />
               <label for="tempo_preparo">Tempo de preparo</label>
@@ -121,10 +114,10 @@ include_once("../config/process.php");
                 <textarea
                   class="form-control"
                   placeholder="Ingrediente"
-                  id="ingrediente"
+                  id="ingredientes"
                   name="ingrediente"
                   style="height: 100px"
-                ><?=$onlyContato["nome_ingrediente"]?></textarea>
+                ><?=$umRegistroReceitaArray["nome_ingredientes"]?></textarea>
                 <label for="ingrediente">Ingredientes</label>
               </div>
             </div>
@@ -138,14 +131,20 @@ include_once("../config/process.php");
                 class="form-control"
                 placeholder="Leave a comment here"
                 id="modo_preparo"
-                name="modo_preparo"
+                name="descricao"
                 style="height: 100px"
-              ><?=$onlyContato["modo_preparo"]?>
-            </textarea>
+              ><?=$umRegistroReceitaArray["descricao"]?></textarea>
               <label for="modo_preparo">Modo de preparo</label>
             </div>
           </div>
         </div>
+
+        <?php
+          if( isset($_SESSION["camposVaziosEditar"])) {
+            echo $_SESSION["camposVaziosEditar"];
+            unset($_SESSION["camposVaziosEditar"]);
+          }
+        ?>
 
         <!-- Botão submit -->
         <div class="row justify-content-center mt-4">

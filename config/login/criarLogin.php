@@ -1,23 +1,21 @@
 <?php
 include_once("../conn.php");
-include_once("./funcoesLogin.php");
+include_once("funcoesLogin.php");
 ?>
 
 <?php
-$method = $_SERVER["REQUEST_METHOD"];
-$dados = $_POST;
 
-if ( $method === "POST") {
+if ( $_SERVER["REQUEST_METHOD"] === "POST") {
     
-	if ( isset($dados["name"]) && !empty($dados["name"]) || isset($dados["lastname"]) && !empty($dados["lastname"]) || isset($dados["email"]) && !empty($dados["email"]) || isset	($dados["password"]) && !empty($dados["password"]) || isset($dados["confirmpassword"]) && !empty($dados["confirmpassword"])) {
+	if ( !empty($_POST["name"]) || !empty($_POST["lastname"]) || !empty($_POST["email"]) || !empty($_POST["password"]) || !empty($_POST["confirmpassword"])) {
 		
-		$nome = $dados["name"];
-		$sobrenome = $dados["lastname"];
-		$senha = $dados["password"];
-		$email = $dados["email"];
-		$confirmarsenha = $dados["confirmpassword"];
+		$nome = $_POST["name"];
+		$sobrenome = $_POST["lastname"];
+		$senha = $_POST["password"];
+		$email = $_POST["email"];
+		$confirmarsenha = $_POST["confirmpassword"];
 
-		$stmt = $conn->prepare("SELECT * FROM usuario WHERE email = :email");
+		$stmt = $conn->prepare("SELECT * FROM usuarios WHERE email = :email");
 		$stmt->bindParam(":email", $email);
 		$stmt->execute();
 
@@ -51,6 +49,8 @@ if ( $method === "POST") {
 				Looks good!
 			</div>
 		</div>';
+
+		$_SESSION["alerta-senha-vazia"] = '<p class="text-danger">Preencha todos os campos e de forma correta!</p>';
 
 		if ($stmt->rowCount() > 0) {
 			$_SESSION["alert-email"] = '
@@ -110,6 +110,8 @@ if ( $method === "POST") {
 
 		if ($senha != $confirmarsenha) {
 			$_SESSION["msg-senha-errada"] = '<p class="text-danger">Confirme a sua senha corretamente.</p>';
+			$_SESSION["msg2"] = '<p class="text-danger">Senha inválida. A senha deve conter pelo menos 8 caracteres, incluindo pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.</p>';
+			header("Location:"."../../src/templates/register.php");
 			exit();
 
 		} else {
@@ -127,8 +129,9 @@ if ( $method === "POST") {
 		
 	
 	}	else {
-		$_SESSION["alerta-senha-vazia"] = '<p class="text-danger">Preencha todos os campos!</p>';
+		$_SESSION["alerta-senha-vazia"] = '<p class="text-danger">Preencha todos os campos e de forma correta!</p>';
 		header("Location:"."../../src/templates/register.php");
+		exit();
 	}
 	
 }
