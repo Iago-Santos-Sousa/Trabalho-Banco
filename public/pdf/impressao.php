@@ -1,5 +1,7 @@
 <?php
 include_once("imprimir.php");
+// include_once("../../config/funcoes.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

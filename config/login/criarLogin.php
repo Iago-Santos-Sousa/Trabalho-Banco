@@ -8,6 +8,19 @@ include_once("funcoesLogin.php");
 if ( $_SERVER["REQUEST_METHOD"] === "POST") {
     
 	if ( !empty($_POST["name"]) || !empty($_POST["lastname"]) || !empty($_POST["email"]) || !empty($_POST["password"]) || !empty($_POST["confirmpassword"])) {
+
+		$inputs = array($_POST["name"], $_POST["lastname"], $_POST["email"], $_POST["password"], $_POST["confirmpassword"]);
+
+		if(!validarCamposLogin($inputs)) {
+			header("Location:"."../../src/templates/register.php");
+			$_SESSION["alerta-senha-vazia"] = true;
+		}
+
+		// if ( empty($_POST["name"]) || empty($_POST["lastname"]) || empty($_POST["email"]) || empty($_POST["password"]) || empty($_POST["confirmpassword"])) {
+		// 	header("Location:"."../../src/templates/register.php");
+		// 	$_SESSION["alerta-senha-vazia"] = true;
+		// 	// exit();
+		// }
 		
 		$nome = $_POST["name"];
 		$sobrenome = $_POST["lastname"];
@@ -50,14 +63,11 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST") {
 			</div>
 		</div>';
 
-		$_SESSION["alerta-senha-vazia"] = '<p class="text-danger">Preencha todos os campos e de forma correta!</p>';
-
 		if ($stmt->rowCount() > 0) {
 			$_SESSION["alert-email"] = '
 			<div id="validationServerEmail"
         class="invalid-feedback"> Este endereço de email já está sendo usado. 
 			</div>';
-
 			$_SESSION["alert-input"] = '
 			<input
 				type="text"
@@ -69,7 +79,7 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST") {
 			/>
       <label for="email" class="form-label">Digite seu email</label>';
 			header("Location:"."../../src/templates/register.php");
-			exit();
+			// exit();
 			// return;			
 
 		} else if (validarEmail($email)) {
@@ -105,32 +115,36 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST") {
 					/>
       	<label for="email" class="form-label">Digite seu email</label>';
 				header("Location:"."../../src/templates/register.php");
-				exit();
+				// exit();
 			}
 
-		if ($senha != $confirmarsenha) {
-			$_SESSION["msg-senha-errada"] = '<p class="text-danger">Confirme a sua senha corretamente.</p>';
-			$_SESSION["msg2"] = '<p class="text-danger">Senha inválida. A senha deve conter pelo menos 8 caracteres, incluindo pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.</p>';
+		if ($senha !== $confirmarsenha) {
+			$_SESSION["msg-senha-errada"] = true;
+			$_SESSION["msg2-senha-errada"] = true;
 			header("Location:"."../../src/templates/register.php");
 			exit();
 
 		} else {
 			if (validarSenha($senha)) {
 				inserirUser($nome, $sobrenome, $email, $senha);
+				unset($_SESSION["nome-user"]);
+        unset($_SESSION["sobre-nome-user"]);
+				unset($_SESSION["alert-input"]);
+        unset($_SESSION["alert-email"]);
+        unset($_SESSION["alerta-senha-vazia"]);
 				header("Location:"."../../src/templates/loginEntrar.php");
 				
 			} else {
-				$_SESSION["msg2"] = '<p class="text-danger">Senha inválida. A senha deve conter pelo menos 8 caracteres, incluindo pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.</p>';
+				$_SESSION["msg2-senha-errada"] = true;
 				header("Location:"."../../src/templates/register.php");
 				// return;
 				exit();
 			}
 		}
-		
 	
 	}	else {
-		$_SESSION["alerta-senha-vazia"] = '<p class="text-danger">Preencha todos os campos e de forma correta!</p>';
 		header("Location:"."../../src/templates/register.php");
+		$_SESSION["alerta-senha-vazia"] = true;
 		exit();
 	}
 	

@@ -10,8 +10,13 @@ if( $_SERVER["REQUEST_METHOD"] === "POST") {
   $ingredientes = $_POST["ingrediente"];
   $descricao = $_POST["descricao"];
 
-  if( empty($nomeReceita) || empty($tempoPreparo) || empty($ingredientes) || empty($descricao)) {
-    
+  $inputs = array($nomeReceita, $tempoPreparo, $ingredientes, $descricao);
+
+  if(validarCampos($inputs)) {
+    header('Location:'.'../public/addreceita.php');
+    editarReceita($userID, $_SESSION["receitaIDEditar"], $nomeReceita, $tempoPreparo, $ingredientes, $descricao); 
+
+  } else {
     header('Location:'.'../public/edit.php');
     // header('Location:'.'../public/addreceita.php');
     $_SESSION["camposVaziosEditar"] = '
@@ -21,12 +26,25 @@ if( $_SERVER["REQUEST_METHOD"] === "POST") {
       </div>
     </div>';
     exit();
-    
-  } else {
-    header('Location:'.'../public/addreceita.php');
-    editarReceita($userID, $_SESSION["receitaIDEditar"], $nomeReceita, $tempoPreparo, $ingredientes, $descricao);   
-    
   }
+
+  // if( empty($nomeReceita) || empty($tempoPreparo) || empty($ingredientes) || empty($descricao)) {
+    
+  //   header('Location:'.'../public/edit.php');
+  //   // header('Location:'.'../public/addreceita.php');
+  //   $_SESSION["camposVaziosEditar"] = '
+  //   <div class="row">
+  //     <div class="col pt-3">
+  //       <p class="text-center text-danger">Preencha todos os campos!</p>
+  //     </div>
+  //   </div>';
+  //   exit();
+    
+  // } else {
+  //   header('Location:'.'../public/addreceita.php');
+  //   editarReceita($userID, $_SESSION["receitaIDEditar"], $nomeReceita, $tempoPreparo, $ingredientes, $descricao);   
+    
+  // }
 } 
 
 

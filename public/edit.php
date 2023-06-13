@@ -20,7 +20,7 @@ $umRegistroReceitaArray = umRegistroReceita($userID, $_SESSION["receitaIDEditar"
     ?>
     <link rel="stylesheet" href="../src/css/cssPublic.css" />
     <title>Document</title>
-  </head>
+  </head class="corpo">
   <body style="height: 100vh">
     <!-- nav verificado -->
     <nav

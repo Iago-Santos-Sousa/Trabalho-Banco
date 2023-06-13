@@ -30,7 +30,7 @@ function verificarUser($email, $senha) {
   $stmt->execute();
 
   if($stmt->rowCount() > 0) {
-    $dado = $stmt->fetch();
+    $dado = $stmt->fetch(PDO::FETCH_ASSOC);
     $_SESSION["id_usuarios"] = $dado["id_usuarios"];
     $_SESSION["email"] = $dado["email"];
     $_SESSION["senha"] = $dado["senha"];
@@ -50,6 +50,17 @@ function validarEmail($email) {
 
   if (!checkdnsrr($domain, 'MX')) {
     return false;
+  }
+
+  return true;
+}
+
+// verificar inputs vazios
+function validarCamposLogin($campos) {
+  foreach ($campos as $campo) {
+    if (empty($campo)) {
+      return false;
+    }
   }
 
   return true;

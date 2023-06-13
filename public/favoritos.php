@@ -13,11 +13,11 @@ $todosRegistrosFavoritosArray = todosRegistrosFavoritos($userID);
     <?php
       include_once("../src/templates/header.php");
     ?>
-    <!-- <link rel="stylesheet" href="../src/css/cssPublic.css" /> -->
+    <link rel="stylesheet" href="../src/css/cssPublic.css" />
 
     <title>Document</title>
   </head>
-  <body>
+  <body class="corpo">
     <!-- nav verificado -->
     <nav
       class="navbar navbar-expand-lg bg-body-tertiary bg-primary fixed-top"

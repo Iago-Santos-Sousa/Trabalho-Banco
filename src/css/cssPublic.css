@@ -1,3 +1,20 @@
+@font-face {
+  font-family: "Rocher";
+  src: url(https://assets.codepen.io/9632/RocherColorGX.woff2);
+}
+
+@font-palette-values --Purples {
+  font-family: Rocher;
+  base-palette: 6;
+}
+
+.purples {
+  font-family: "Rocher";
+  font-palette: --Purples;
+  text-align: center;
+  font-size: 3rem;
+}
+
 .nav-link {
   transition: all 0.2s;
 }
@@ -21,4 +38,24 @@
   height: 4rem;
   background-color: black;
   border-radius: 50%;
+}
+
+.corpo {
+  background-image: url(../../public/a.png);
+  /* background-image: linear-gradient(black, white); */
+  /* background-color: #cccccc; */
+  background-size: 40px;
+  background-repeat: repeat;
+  /* color: transparent; */
+  /* -webkit-background-clip: text; */
+  /* background-clip: text; */
+}
+
+.aviso {
+  font-size: 40px;
+  font-weight: 600;
+  background-image: linear-gradient(to left, #1b26b8, #e70d2d);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
 }

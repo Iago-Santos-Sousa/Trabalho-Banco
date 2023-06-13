@@ -1,6 +1,17 @@
 <?php
 session_start();
-// include_once("./config/conn.php");
+
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+  echo "logado";
+ 
+} else {
+  echo "não está logado!";
+  unset($_SESSION["id_usuarios"]);
+  unset($_SESSION["email"]);
+  unset($_SESSION["senha"]);
+  unset($_SESSION['loggedin']);
+  session_destroy();
+}
 ?>
 
 <!DOCTYPE html>
@@ -63,7 +74,10 @@ session_start();
       </div>
     </nav>
 
-      <section class="" style="height: calc(100% - 3rem); padding-top: 10rem; margin-bottom: 12rem;">
+      <h1 class="purples" style="margin-top: 7rem;">Livro de receitas</h1>
+
+      <section class="" style="height: calc(100% - 3rem); padding-top: 3rem; margin-bottom: 5rem;">
+
         <div class="wrapper" >
           <div
             class="container"

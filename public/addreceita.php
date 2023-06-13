@@ -15,7 +15,7 @@ $todosRegistrosReceitasArray = todosRegistrosReceitas($userID);
     <link rel="stylesheet" href="../src/css/cssPublic.css" />
     <title>Document</title>
   </head>
-  <body style="height: 100vh">
+  <body style="height: 100vh" class="corpo">
     <!-- nav verificado -->
     <nav
       class="navbar navbar-expand-lg bg-body-tertiary bg-primary fixed-top"
@@ -197,7 +197,10 @@ $todosRegistrosReceitasArray = todosRegistrosReceitas($userID);
         <?php endforeach;?>
         
         <?php else:?>
-          <div class="text-center">Não há receitas</div>
+          <div class="text-center aviso">Não há receitas</div>
+          <div style="display: flex; align-items: center; justify-content: center;">
+            <img src="../src/img/sad-face.svg" alt="" style="width: 170px;">
+          </div>
         <?php endif;?>
         
       </div>

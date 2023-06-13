@@ -10,8 +10,9 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     $ingredientes = $_POST["ingrediente"];
     $descricao = $_POST["modo_preparo"];
 
-    if( !empty($nomeReceita) && !empty($tempoPreparo) && !empty($ingredientes) && !empty($descricao)) {
+    $inputs = array($nomeReceita, $tempoPreparo, $ingredientes, $descricao);
 
+    if(validarCampos($inputs)) {
       criarReceitas($userID, $nomeReceita, $tempoPreparo, $descricao, $ingredientes);
 
       header('Location:'.'../public/addreceita.php');
@@ -24,7 +25,24 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
           <p class="text-center text-danger">Preencha todos os campos!</p>
         </div>
       </div>';
+      exit();
     }
+
+    // if( !empty($nomeReceita) && !empty($tempoPreparo) && !empty($ingredientes) && !empty($descricao)) {
+
+    //   criarReceitas($userID, $nomeReceita, $tempoPreparo, $descricao, $ingredientes);
+
+    //   header('Location:'.'../public/addreceita.php');
+
+    // } else {
+    //   header('Location:'.'../public/addreceita.php');
+    //   $_SESSION["campo-vazio"] = '
+    //   <div class="row">
+    //     <div class="col pt-3">
+    //       <p class="text-center text-danger">Preencha todos os campos!</p>
+    //     </div>
+    //   </div>';
+    // }
 
   } elseif(!empty($_POST["deletar-receita"])) {
     $idReceita = $_POST["id_receitas"];

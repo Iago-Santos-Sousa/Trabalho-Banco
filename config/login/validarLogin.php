@@ -10,7 +10,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		$senha = $_POST["password"];
 
 		if (verificarUser($email, $senha) == true) {
-			if(isset($_SESSION["id_usuarios"]) || isset($_SESSION["email"]) || isset($_SESSION["senha"])) {
+
+			if(isset($_SESSION["id_usuarios"]) || isset($_SESSION["email"]) || isset($_SESSION["senha"])){
+				$_SESSION['loggedin'] = true;
 				header('Location:'. '../../index.php'); 
 	
 			} else {
@@ -20,14 +22,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 				session_destroy();
 				header('Location:'. '../../index.php');
 			}
+
 		} else {
-			$_SESSION["alert"] = '<div class="row justify-content-center"><div class="col-6 col-md-6 col-lg-6 col-xl-5"><div id="liveAlertPlaceholder" class="mt-2"></div></div></div>';
+			$_SESSION["alert"] = true;
 			header("Location:"."../../src/templates/loginEntrar.php");
 			
 		}
 			
 	} else {
-		$_SESSION["alert"] = '<div class="row justify-content-center"><div class="col-6 col-md-6 col-lg-6 col-xl-5"><div id="liveAlertPlaceholder" class="mt-2"></div></div></div>';
+		$_SESSION["alert"] = true;
 		header("Location:"."../../src/templates/loginEntrar.php");
 	}
 	

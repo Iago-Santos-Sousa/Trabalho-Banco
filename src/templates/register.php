@@ -62,13 +62,15 @@ session_start();
               ?>
             <div class="form-floating mb-3">
               <?php
-                if(isset($_SESSION["alert-input"]) || isset($_SESSION["alert-email"])) {
+                if(isset($_SESSION["alert-input"]) && isset($_SESSION["alert-email"])) {
                   echo $_SESSION["alert-input"];
                   echo $_SESSION["alert-email"];
                   unset($_SESSION["alert-input"]);
                   unset($_SESSION["alert-email"]);
                   
                 } else {
+                  // unset($_SESSION["alert-input"]);
+                  // unset($_SESSION["alert-email"]);
                   echo '
                     <input
                       type="text"
@@ -92,9 +94,12 @@ session_start();
               />
               <label for="password" class="form-label">Digite sua senha</label>
               <?php
-                if(isset($_SESSION["msg2"])) {
-                  echo $_SESSION["msg2"];
-                  unset($_SESSION["msg2"]);
+                if(isset($_SESSION["msg2-senha-errada"])) {
+                  echo '<p class="text-danger">Senha inválida. A senha deve conter pelo menos 8 caracteres, incluindo pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.</p>';
+                  unset($_SESSION["msg2-senha-errada"]);
+                } else {
+                  unset($_SESSION["msg2-senha-errada"]);
+
                 }
               ?>
             </div>
@@ -112,14 +117,17 @@ session_start();
               >
               <?php
                 if(isset($_SESSION["msg-senha-errada"])) {
-                  echo $_SESSION["msg-senha-errada"];
+                  echo '<p class="text-danger">Confirme a sua senha corretamente.</p>';
                   unset($_SESSION["msg-senha-errada"]);
+                } else {
+                  unset($_SESSION["msg-senha-errada"]);
+
                 }
               ?>
             </div>
             <?php
               if(isset($_SESSION["alerta-senha-vazia"])) {
-                echo $_SESSION["alerta-senha-vazia"];
+                echo '<p class="text-danger">Preencha todos os campos e de forma correta!</p>';
                 unset($_SESSION["alerta-senha-vazia"]);
               }
             ?>

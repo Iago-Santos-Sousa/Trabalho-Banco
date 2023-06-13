@@ -1,6 +1,6 @@
 <?php
 require __DIR__.'/vendor/autoload.php';
-include_once("../../config/process.php");
+include_once("../../config/funcoes.php");
 
 use Dompdf\Dompdf;
 use Dompdf\Options;

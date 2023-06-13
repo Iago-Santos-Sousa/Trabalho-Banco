@@ -8,10 +8,21 @@ if (isset($_SESSION["id_usuarios"])) {
   $userID = $_SESSION["id_usuarios"];
 } 
 
-$_SESSION["receitaIDEditar"];
+// $_SESSION["receitaIDEditar"];
 $umRegistroReceitaArray = [];
 $todosRegistrosReceitasArray = [];
 $todosRegistrosFavoritosArray = [];
+
+// verificar inputs vazios
+function validarCampos($campos) {
+  foreach ($campos as $campo) {
+    if (empty($campo)) {
+      return false;
+    }
+  }
+
+  return true;
+}
 
 // Retorna todos os registros
 function todosRegistrosReceitas($userID) {
@@ -149,7 +160,7 @@ function todosRegistrosFavoritos($userID) {
   return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// retorna todos apenas um registro da tabela favoritos
+// retorna apenas um registro da tabela favoritos
 function umRegistroFavorito($userID, $favoritoID) {
   global $conn;
   $query = "SELECT *

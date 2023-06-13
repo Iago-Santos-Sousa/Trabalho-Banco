@@ -36,7 +36,7 @@ include_once("../../config/conn.php");
 
         <?php
           if(isset($_SESSION["alert"])) {
-            echo $_SESSION["alert"];
+            echo '<div class="row justify-content-center"><div class="col-6 col-md-6 col-lg-6 col-xl-5"><div id="liveAlertPlaceholder" class="mt-2"></div></div></div>';
             unset($_SESSION["alert"]);
           }
         ?>
