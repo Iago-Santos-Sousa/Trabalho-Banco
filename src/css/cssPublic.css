@@ -40,8 +40,8 @@
   border-radius: 50%;
 }
 
-.corpo {
-  background-image: url(../../public/a.png);
+body {
+  background-image: url(../img/chef-hat.png);
   /* background-image: linear-gradient(black, white); */
   /* background-color: #cccccc; */
   background-size: 40px;
