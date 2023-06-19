@@ -24,7 +24,7 @@ function validarCampos($campos) {
   return true;
 }
 
-// Retorna todos os registros
+// Retorna todos os registros (todas as receitas)
 function todosRegistrosReceitas($userID) {
   global $conn;
   $query= "SELECT *
@@ -42,7 +42,7 @@ function todosRegistrosReceitas($userID) {
   return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// retorna apenas um registro
+// retorna apenas um registro (uma receita)
 function umRegistroReceita($userID, $receitaID) {
   global $conn;
   $query= "SELECT *
@@ -61,7 +61,7 @@ function umRegistroReceita($userID, $receitaID) {
   return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-// insere dados no BD
+// insere receitas no BD
 function criarReceitas($userID, $nomeReceita, $tempoPreparo, $descricao, $ingredientes) {
   global $conn;
   $conn->beginTransaction();
@@ -103,7 +103,7 @@ function criarReceitas($userID, $nomeReceita, $tempoPreparo, $descricao, $ingred
   $conn->commit();
 }
 
-// edita os dados no BD
+// edita uma receita específica no BD
 function editarReceita($userID, $receitaid, $nomeReceita, $tempoPreparo, $ingredientes, $descricao) {
   global $conn;
 
@@ -125,7 +125,7 @@ function editarReceita($userID, $receitaid, $nomeReceita, $tempoPreparo, $ingred
 
 }
 
-// exclui dados no BD
+// exclui uma receita específica no BD
 function deletarReceita($userID, $idReceita, $idIngrediente) {
   global $conn;
 
@@ -146,6 +146,25 @@ function deletarReceita($userID, $idReceita, $idIngrediente) {
   $stmt->bindParam(":id_receita", $idReceita, PDO::PARAM_INT);
   $stmt->bindParam(":id_ingrediente", $idIngrediente, PDO::PARAM_INT);
   $stmt->execute();
+}
+
+// insere dados na tabela favoritos do BD
+function inserirFavorito($userID, $idReceita) {
+  global $conn;
+  $favoritoRegistro = [];
+  $favoritoRegistro = umRegistroReceita($userID, $idReceita);
+
+  $query = "INSERT INTO favoritos 
+  (id_usuarios_fa, receitas_fa, tempo_de_preparo_fa, ingredientes_fa, descricao_fa)
+  VALUES (:id_usuarios_fa, :receitas_fa, :tempo_de_preparo_fa, :ingredientes_fa, :descricao_fa)";
+  $stmt= $conn->prepare($query);
+  $stmt->bindParam(":id_usuarios_fa", $userID, PDO::PARAM_INT);
+  $stmt->bindParam(":receitas_fa", $favoritoRegistro["nome_receitas"], PDO::PARAM_INT);
+  $stmt->bindParam(":tempo_de_preparo_fa", $favoritoRegistro["tempo_de_preparo"]);
+  $stmt->bindParam(":ingredientes_fa", $favoritoRegistro["nome_ingredientes"]);
+  $stmt->bindParam(":descricao_fa", $favoritoRegistro["descricao"]);
+  $stmt->execute();
+
 }
 
 // retorna todos os registros da tabela favoritos
@@ -172,25 +191,6 @@ function umRegistroFavorito($userID, $favoritoID) {
   $stmt->bindParam(":favoritoID", $favoritoID, PDO::PARAM_INT);
   $stmt->execute();
   return $stmt->fetch(PDO::FETCH_ASSOC);
-}
-
-// insere dados na tabela favoritos do BD
-function inserirFavorito($userID, $idReceita) {
-  global $conn;
-  $favoritoRegistro = [];
-  $favoritoRegistro = umRegistroReceita($userID, $idReceita);
-
-  $query = "INSERT INTO favoritos 
-  (id_usuarios_fa, receitas_fa, tempo_de_preparo_fa, ingredientes_fa, descricao_fa)
-  VALUES (:id_usuarios_fa, :receitas_fa, :tempo_de_preparo_fa, :ingredientes_fa, :descricao_fa)";
-  $stmt= $conn->prepare($query);
-  $stmt->bindParam(":id_usuarios_fa", $userID, PDO::PARAM_INT);
-  $stmt->bindParam(":receitas_fa", $favoritoRegistro["nome_receitas"], PDO::PARAM_INT);
-  $stmt->bindParam(":tempo_de_preparo_fa", $favoritoRegistro["tempo_de_preparo"]);
-  $stmt->bindParam(":ingredientes_fa", $favoritoRegistro["nome_ingredientes"]);
-  $stmt->bindParam(":descricao_fa", $favoritoRegistro["descricao"]);
-  $stmt->execute();
-
 }
 
 // deleta um favorito específico no BD
