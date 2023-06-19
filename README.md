@@ -1,5 +1,4 @@
 # Trabalho-Banco
-### https://iago-santos-sousa.github.io/Trabalho-Banco/
 
 ### Funcionalidades do trabalho:
 1. Registrar usuário;
