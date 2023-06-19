@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once("baseURL.php");
 
 $user = "root";
 $pass = "";
@@ -19,6 +20,8 @@ try {
   echo "erro na conexão"."<br>";
 
 }
+
+// echo $baseUrl;
 
 
 
