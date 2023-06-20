@@ -1,8 +1,9 @@
 # Trabalho-Banco
 
 ### Funcionalidades do trabalho:
-1. Registrar usuário;
-1. Fazer login;
+1. Gerenciar login:
+   - Registrar usuário;
+   - Fazer login;
 1. Gerenciar receita:
    - Adicionar receita;
    - Atualizar receita;
