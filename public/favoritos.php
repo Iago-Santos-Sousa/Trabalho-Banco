@@ -63,7 +63,7 @@ $todosRegistrosFavoritosArray = todosRegistrosFavoritos($userID);
       </div>
     </nav>
 
-     <div class="container mt-5 pb-5" style="padding-top: 10rem;">
+     <div class="container mt-5 pb-5" style="padding-top: 10rem; margin-bottom: 23rem;" >
       <div class="row">
         <?php if(count($todosRegistrosFavoritosArray) >
         0):?>
@@ -112,7 +112,7 @@ $todosRegistrosFavoritosArray = todosRegistrosFavoritos($userID);
       </div>
     </div>
 
-    <?php include_once("../src/templates/bootstrap.php");?>
+    <?php include_once("../src/templates/footer.php");?>
     <script src="../src/js/toolTip.js" type="text/javascript"></script>
   </body>
 </html>

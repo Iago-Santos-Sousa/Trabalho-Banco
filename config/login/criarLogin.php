@@ -132,7 +132,8 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST") {
 				unset($_SESSION["alert-input"]);
         unset($_SESSION["alert-email"]);
         unset($_SESSION["alerta-senha-vazia"]);
-				header("Location:"."../../src/templates/loginEntrar.php");
+				header("Location:"."register.php");
+				$_SESSION["usuarioCriado"] = true;
 				
 			} else {
 				$_SESSION["msg2-senha-errada"] = true;

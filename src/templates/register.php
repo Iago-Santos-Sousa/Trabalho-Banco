@@ -18,12 +18,30 @@ session_start();
     <title>Register</title>
   </head>
   <body>
-    <div class="container col-11 col-md-9" id="form-container">
+    <div class="container col-11 col-md-9" id="form-container" style="margin-bottom: 23rem;">
       <div class="row gx-5">
         <div class="col-md-6">
           <h2>Realize o seu cadastro</h2>
           <form class="" action="../../config/login/criarLogin.php" method="POST">
             <?php
+
+              if (isset($_SESSION["usuarioCriado"])) {
+                echo '
+                <div class="toast-container top-0 start-50 translate-middle-x p-3">
+                  <div
+                    id="liveToast"
+                    class="toast d-flex text-bg-success"
+                    role="alert"
+                    aria-live="assertive"
+                    aria-atomic="true"
+                  >
+                    <div class="toast-body rounded border-2">Cadastro realizado com sucesso!</div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                  </div>
+                </div>';
+                unset($_SESSION["usuarioCriado"]);
+              }
+
               if(isset($_SESSION["nome-user"]) && isset($_SESSION["sobre-nome-user"])) {
                 echo $_SESSION["nome-user"];
                 echo $_SESSION["sobre-nome-user"];
@@ -151,6 +169,7 @@ session_start();
       </div>
     </div>
 
-    <?php include_once("../templates/bootstrap.php");?>
+    <?php include_once("../templates/footer.php");?>
+    <script src="../js/toastRegistro.js" type="text/javascript"></script>
   </body>
 </html>

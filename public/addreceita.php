@@ -1,6 +1,5 @@
 <?php
 include_once("../config/process.php");
-// include_once("../config/funcoes.php");
 $todosRegistrosReceitasArray = todosRegistrosReceitas($userID);
 ?>
 <!DOCTYPE html>
@@ -123,9 +122,9 @@ $todosRegistrosReceitasArray = todosRegistrosReceitas($userID);
         </div>
 
         <?php
-          if( isset($_SESSION["campo-vazio"])) {
-            echo $_SESSION["campo-vazio"];
-            unset($_SESSION["campo-vazio"]);
+          if(isset($_SESSION["camposVazios"])) {
+            echo '<div class="row justify-content-center"><div class="col-6 col-md-6 col-lg-6 col-xl-5"><div id="liveAlertPlaceholder" class="mt-2"></div></div></div>';
+            unset($_SESSION["camposVazios"]);
           }
         ?>
 
@@ -150,7 +149,7 @@ $todosRegistrosReceitasArray = todosRegistrosReceitas($userID);
         <?php if(count($todosRegistrosReceitasArray) >
         0):?>
         <?php foreach($todosRegistrosReceitasArray as $contato):?>
-        <div class="col-md-3 pb-3">
+        <div class="col-md-3 pb-3" style="margin-bottom: 5rem;">
           <div class="card border-info border-3">
             <img class="card-img-top img-fluid" src="../src/img/recipe.svg" alt="Card image cap">
             <div class="card-body">
@@ -198,7 +197,7 @@ $todosRegistrosReceitasArray = todosRegistrosReceitas($userID);
         
         <?php else:?>
           <div class="text-center aviso">Não há receitas</div>
-          <div style="display: flex; align-items: center; justify-content: center;">
+          <div style="display: flex; align-items: center; justify-content: center;margin-bottom: 5rem;">
             <img src="../src/img/sad-face.svg" alt="" style="width: 170px;">
           </div>
         <?php endif;?>
@@ -206,8 +205,9 @@ $todosRegistrosReceitasArray = todosRegistrosReceitas($userID);
       </div>
     </div>
 
-    <?php include_once("../src/templates/bootstrap.php");?>
+    <?php include_once("../src/templates/footer.php");?>
     <script src="../src/js/toolTip.js" type="text/javascript"></script>
     <script src="../src/js/toastFavorito.js" type="text/javascript"></script>
+    <script src="../src/js/alertCamposVazios.js" type="text/javascript"></script>
   </body>
 </html>

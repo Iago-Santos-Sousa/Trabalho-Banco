@@ -122,7 +122,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                         alt="..."
                       />
                       <div class="carousel-caption d-none d-md-block">
-                        <h3>Crie as suas receitas</h3>
+                        <h3 class="fs-2 text-light fw-bolder">Crie as suas receitas</h3>
                       </div>
                     </div>
                     <div class="carousel-item">
@@ -132,7 +132,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                         alt="..."
                       />
                       <div class="carousel-caption d-none d-md-block">
-                        <h3>Escolha entre as suas favoritas</h3>
+                        <h3 class="fs-2 text-light fw-bolder">Escolha entre as suas favoritas</h3>
                       </div>
                     </div>
                     <div class="carousel-item">
@@ -142,7 +142,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                         alt="..."
                       />
                       <div class="carousel-caption d-none d-md-block">
-                        <h3>Altere suas receitas quando quiser</h3>
+                        <h3 class="fs-2 text-light fw-bolder">Altere suas receitas quando quiser</h3>
                       </div>
                     </div>
                   </div>
@@ -177,15 +177,15 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
         </div>
       </section>
    
-    <footer class="bg-dark text-center text-lg-start text-light">
+    <!-- <footer class="bg-dark text-center text-lg-start text-light">
       <div class="text-center p-3">
         © 2023 Copyright:
         <a class="text-light" href="#">Receitas</a>
       </div>
-    </footer>
+    </footer> -->
 
     <?php
-      include_once("./src/templates/bootstrap.php");
+      include_once("./src/templates/footer.php");
     ?>
   </body>
 </html>

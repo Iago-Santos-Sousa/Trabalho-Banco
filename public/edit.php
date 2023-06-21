@@ -71,7 +71,7 @@ $umRegistroReceitaArray = umRegistroReceita($userID, $_SESSION["receitaIDEditar"
     </nav>
     
     <!-- Formulário -->
-    <div class="container px-3" style="padding-top: 10rem;">
+    <div class="container px-3" style="padding-top: 10rem; margin-bottom: 41rem;">
     <!-- <p><?= $_SESSION["receitaIDEditar"]?></p> -->
       <form method="POST" action="../config/editarReceita.php">
         <!-- <input type="hidden" name="receitaID" value="<?=$_SESSION["receitaIDEditar"]?>"> -->
@@ -141,7 +141,7 @@ $umRegistroReceitaArray = umRegistroReceita($userID, $_SESSION["receitaIDEditar"
 
         <?php
           if( isset($_SESSION["camposVaziosEditar"])) {
-            echo $_SESSION["camposVaziosEditar"];
+            echo '<div class="row justify-content-center"><div class="col-6 col-md-6 col-lg-6 col-xl-5"><div id="liveAlertPlaceholder" class="mt-2"></div></div></div>';
             unset($_SESSION["camposVaziosEditar"]);
           }
         ?>
@@ -156,6 +156,7 @@ $umRegistroReceitaArray = umRegistroReceita($userID, $_SESSION["receitaIDEditar"
       </form>
     </div>
 
-   <?php include_once("../src/templates/bootstrap.php");?>
+   <?php include_once("../src/templates/footer.php");?>
+   <script src="../src/js/alertCamposVaziosEditar.js" type="text/javascript"></script>
   </body>
 </html>

@@ -19,38 +19,17 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
     } else {
       header('Location:'.'../public/addreceita.php');
-      $_SESSION["campo-vazio"] = '
-      <div class="row">
-        <div class="col pt-3">
-          <p class="text-center text-danger">Preencha todos os campos!</p>
-        </div>
-      </div>';
+      $_SESSION["camposVazios"] = true;
       exit();
     }
-
-    // if( !empty($nomeReceita) && !empty($tempoPreparo) && !empty($ingredientes) && !empty($descricao)) {
-
-    //   criarReceitas($userID, $nomeReceita, $tempoPreparo, $descricao, $ingredientes);
-
-    //   header('Location:'.'../public/addreceita.php');
-
-    // } else {
-    //   header('Location:'.'../public/addreceita.php');
-    //   $_SESSION["campo-vazio"] = '
-    //   <div class="row">
-    //     <div class="col pt-3">
-    //       <p class="text-center text-danger">Preencha todos os campos!</p>
-    //     </div>
-    //   </div>';
-    // }
 
   } elseif(!empty($_POST["deletar-receita"])) {
     $idReceita = $_POST["id_receitas"];
     $idIngrediente = $_POST["id_ingredientes"];
     deletarReceita($userID, $idReceita, $idIngrediente);
     header('Location:'.'../public/addreceita.php');
-  } 
-  elseif( !empty($_POST["favorito"])) {
+    
+  } elseif( !empty($_POST["favorito"])) {
     $idReceita = $_POST["id_receitas"];
     inserirFavorito($userID, $idReceita);
     deletarReceita($userID, $idReceita, $idIngrediente, $receitaId, $receitaIngrediente);

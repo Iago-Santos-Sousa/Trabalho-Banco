@@ -22,7 +22,7 @@ include_once("../../config/conn.php");
     <title>Document</title>
   </head>
   <body>
-    <div class="container col-11 col-md-9" id="form-container">
+    <div class="container col-11 col-md-9" id="form-container" style="margin-bottom: 23rem;">
       <div class="row justify-content-center">
         <div class="row justify-content-center mb-3">
           <div class="col-4 col-md-5 col-lg-4">
@@ -96,7 +96,7 @@ include_once("../../config/conn.php");
       </div>
     </div>
 
-    <?php include_once("bootstrap.php");?>
+    <?php include_once("footer.php");?>
     <script src="../js/senhaTooltip.js" type="text/javascript"></script>
     <script src="../js/toolTip.js" type="text/javascript"></script>
     <script src="../js/alertLogin.js" type="text/javascript"></script>
