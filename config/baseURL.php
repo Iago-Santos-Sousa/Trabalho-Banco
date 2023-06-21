@@ -17,9 +17,7 @@ $basePath = dirname($path);
 
 // Cria a base URL concatenando o protocolo, host e caminho base
 $baseUrl = $protocol . '://' . $host . $basePath . '/';
-// echo $baseUrl;
-
-
+echo $baseUrl; // http://localhost/Trabalho-BD/config/
 
 
 
