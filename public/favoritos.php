@@ -1,6 +1,5 @@
 <?php
 include_once("../config/process.php");
-// include_once("../config/funcoes.php");
 $todosRegistrosFavoritosArray = todosRegistrosFavoritos($userID);
 ?>
 

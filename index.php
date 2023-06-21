@@ -176,13 +176,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
           </div>
         </div>
       </section>
-   
-    <!-- <footer class="bg-dark text-center text-lg-start text-light">
-      <div class="text-center p-3">
-        © 2023 Copyright:
-        <a class="text-light" href="#">Receitas</a>
-      </div>
-    </footer> -->
 
     <?php
       include_once("./src/templates/footer.php");

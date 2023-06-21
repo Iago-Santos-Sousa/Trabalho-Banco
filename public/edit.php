@@ -72,9 +72,7 @@ $umRegistroReceitaArray = umRegistroReceita($userID, $_SESSION["receitaIDEditar"
     
     <!-- Formulário -->
     <div class="container px-3" style="padding-top: 10rem; margin-bottom: 41rem;">
-    <!-- <p><?= $_SESSION["receitaIDEditar"]?></p> -->
       <form method="POST" action="../config/editarReceita.php">
-        <!-- <input type="hidden" name="receitaID" value="<?=$_SESSION["receitaIDEditar"]?>"> -->
 
         <div class="row justify-content-center">
           <div class="col-md-4">

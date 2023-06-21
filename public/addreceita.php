@@ -148,34 +148,33 @@ $todosRegistrosReceitasArray = todosRegistrosReceitas($userID);
       <div class="row">
         <?php if(count($todosRegistrosReceitasArray) >
         0):?>
-        <?php foreach($todosRegistrosReceitasArray as $contato):?>
+        <?php foreach($todosRegistrosReceitasArray as $receita):?>
         <div class="col-md-3 pb-3" style="margin-bottom: 5rem;">
           <div class="card border-info border-3">
             <img class="card-img-top img-fluid" src="../src/img/recipe.svg" alt="Card image cap">
             <div class="card-body">
-              <h5 class="card-title text-center"><?=$contato["nome_receitas"]?></h5>
+              <h5 class="card-title text-center"><?=$receita["nome_receitas"]?></h5>
               <div><hr class="border-3 text-success"></div>
-              <p class="card-text fw-bold"><i class="fa-regular fa-clock" style="color: #e17c09; cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tempo de preparo" data-bs-custom-class="custom-tooltip"></i> <?=$contato["tempo_de_preparo"]?>: Minutos</p>
+              <p class="card-text fw-bold"><i class="fa-regular fa-clock" style="color: #e17c09; cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tempo de preparo" data-bs-custom-class="custom-tooltip"></i> <?=$receita["tempo_de_preparo"]?>: Minutos</p>
               <p class="card-text text-center d-flex gap-1 justify-content-center flex-wrap">
-                <a type="button" style="width: 8rem;" tabindex="0" class="btn btn-primary" role="button" data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="<?=$contato["nome_ingredientes"]?>">
+                <a type="button" style="width: 8rem;" tabindex="0" class="btn btn-primary" role="button" data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="<?=$receita["nome_ingredientes"]?>">
                 Ingredientes
                 </a>
-                <a type="button" tabindex="0" style="width: 8rem;" class="btn btn-success" role="button" data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="<?=$contato["descricao"]?>">
+                <a type="button" tabindex="0" style="width: 8rem;" class="btn btn-success" role="button" data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="<?=$receita["descricao"]?>">
                 Descrição
                 </a>
               </p>
               <div class="acoes d-flex">
                 <form action="edit.php" method="POST">
-                  <input type="hidden" name="receitaID" value="<?=$contato["id_receitas"]?>">
+                  <input type="hidden" name="receitaID" value="<?=$receita["id_receitas"]?>">
 
                   <button type="submit" class="delete-btn border-0 text-success" style="background-color: initial;"><i class="fa-solid fa-pencil text-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Editar receita" data-bs-custom-class="custom-tooltip"></i></button>
                 </form>
-                <!-- <a class="lapis text-center" href="edit.php?receita_id=<?=$contato["id_receitas"]?>"><i class="fa-solid fa-pencil text-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Editar receita" data-bs-custom-class="custom-tooltip"></i></a> -->
 
                 <form method="POST" action="../config/process.php">
                   <input type="hidden" name="favorito" value="favoritos">
 
-                  <input type="hidden" name="id_receitas" value="<?=$contato["id_receitas"]?>">
+                  <input type="hidden" name="id_receitas" value="<?=$receita["id_receitas"]?>">
 
                   <button type="submit" class="delete-btn border-0 text-success" style="background-color: initial;"><i class="fa-solid fa-star" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Favoritar" data-bs-custom-class="custom-tooltip"></i></button>
                 </form>
@@ -183,9 +182,9 @@ $todosRegistrosReceitasArray = todosRegistrosReceitas($userID);
                 <form method="POST" action="../config/process.php">
                   <input type="hidden" name="deletar-receita" value="delete">
 
-                  <input type="hidden" name="id_receitas" value="<?=$contato["id_receitas"]?>">
+                  <input type="hidden" name="id_receitas" value="<?=$receita["id_receitas"]?>">
 
-                  <input type="hidden" name="id_ingredientes" value="<?=$contato["id_ingredientes"]?>">
+                  <input type="hidden" name="id_ingredientes" value="<?=$receita["id_ingredientes"]?>">
 
                   <button type="submit" class="delete-btn border-0 text-danger" style="background-color: initial;"><i class="fa-solid fa-trash-can" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir receita" data-bs-custom-class="custom-tooltip"></i></button>
                 </form>
