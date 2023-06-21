@@ -58,9 +58,12 @@ $todosRegistrosReceitasArray = todosRegistrosReceitas($userID);
       </div>
     </nav>
 
-    <!-- Formulário -->
     <div class="container px-3" style="padding-top: 10rem;">
-    
+      <div class="row mb-5">
+        <div class="col">
+          <h3 class="text-center">Receitas</h3>
+        </div>
+      </div>
       <form method="POST" action="../config/process.php">
         <div class="row justify-content-center">
           <div class="col-md-4">
@@ -195,7 +198,7 @@ $todosRegistrosReceitasArray = todosRegistrosReceitas($userID);
         <?php endforeach;?>
         
         <?php else:?>
-          <div class="text-center aviso">Não há receitas</div>
+          <div class="text-center pb-4"><h3>Não há receitas</h3></div>
           <div style="display: flex; align-items: center; justify-content: center;margin-bottom: 5rem;">
             <img src="../src/img/sad-face.svg" alt="" style="width: 170px;">
           </div>

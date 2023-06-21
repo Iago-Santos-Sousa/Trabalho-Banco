@@ -3,6 +3,8 @@
   src: url(https://assets.codepen.io/9632/RocherColorGX.woff2);
 }
 
+@import url("https://fonts.googleapis.com/css2?family=Asap&family=Roboto:ital,wght@0,500;0,900;1,500&display=swap");
+
 @font-palette-values --Purples {
   font-family: Rocher;
   base-palette: 6;
@@ -15,6 +17,14 @@
   font-size: 3rem;
 }
 
+h3 {
+  font-size: 3rem;
+  font-family: "Asap", sans-serif;
+  font-weight: 600;
+  text-shadow: 0px 4px 10px rgba(179, 147, 211, 0.8);
+  color: #800080;
+}
+
 .nav-link {
   transition: all 0.2s;
 }
@@ -22,8 +32,6 @@
 .nav-link:hover {
   color: rgb(255, 255, 255) !important;
   text-decoration: underline;
-  /* font-weight: bold; */
-  /* border-bottom: 1px solid white; */
 }
 
 #meuCarrossel {
@@ -42,20 +50,6 @@
 
 body {
   background-image: url(../img/chef-hat.png);
-  /* background-image: linear-gradient(black, white); */
-  /* background-color: #cccccc; */
   background-size: 40px;
   background-repeat: repeat;
-  /* color: transparent; */
-  /* -webkit-background-clip: text; */
-  /* background-clip: text; */
-}
-
-.aviso {
-  font-size: 40px;
-  font-weight: 600;
-  background-image: linear-gradient(to left, #1b26b8, #e70d2d);
-  color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
 }

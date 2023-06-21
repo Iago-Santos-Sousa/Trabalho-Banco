@@ -62,7 +62,12 @@ $todosRegistrosFavoritosArray = todosRegistrosFavoritos($userID);
       </div>
     </nav>
 
-     <div class="container mt-5 pb-5" style="padding-top: 10rem; margin-bottom: 23rem;" >
+    <div class="container mt-5 pb-5" style="padding-top: 10rem; margin-bottom: 23rem;" >
+      <div class="row mb-5">
+        <div class="col">
+          <h3 class="text-center">Favoritos</h3>
+        </div>
+      </div>
       <div class="row">
         <?php if(count($todosRegistrosFavoritosArray) >
         0):?>
@@ -105,7 +110,7 @@ $todosRegistrosFavoritosArray = todosRegistrosFavoritos($userID);
         <?php endforeach;?>
         
         <?php else:?>
-          <div class="text-center">Não há favoritos</div>
+          <div class="text-center" style="margin-bottom: 23rem;"><h3>Não há favoritos</h3></div>
         <?php endif;?>
         
       </div>

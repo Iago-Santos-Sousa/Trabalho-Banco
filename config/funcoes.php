@@ -8,7 +8,6 @@ if (isset($_SESSION["id_usuarios"])) {
   $userID = $_SESSION["id_usuarios"];
 } 
 
-// $_SESSION["receitaIDEditar"];
 $umRegistroReceitaArray = [];
 $todosRegistrosReceitasArray = [];
 $todosRegistrosFavoritosArray = [];
@@ -20,7 +19,6 @@ function validarCampos($campos) {
       return false;
     }
   }
-
   return true;
 }
 

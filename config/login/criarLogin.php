@@ -15,12 +15,6 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST") {
 			header("Location:"."../../src/templates/register.php");
 			$_SESSION["alerta-senha-vazia"] = true;
 		}
-
-		// if ( empty($_POST["name"]) || empty($_POST["lastname"]) || empty($_POST["email"]) || empty($_POST["password"]) || empty($_POST["confirmpassword"])) {
-		// 	header("Location:"."../../src/templates/register.php");
-		// 	$_SESSION["alerta-senha-vazia"] = true;
-		// 	// exit();
-		// }
 		
 		$nome = $_POST["name"];
 		$sobrenome = $_POST["lastname"];
@@ -78,9 +72,7 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST") {
 				value="' . htmlspecialchars($email, ENT_QUOTES) . '"
 			/>
       <label for="email" class="form-label">Digite seu email</label>';
-			header("Location:"."../../src/templates/register.php");
-			// exit();
-			// return;			
+			header("Location:"."../../src/templates/register.php");		
 
 		} else if (validarEmail($email)) {
 				$_SESSION["alert-email"] = '
@@ -115,7 +107,6 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST") {
 					/>
       	<label for="email" class="form-label">Digite seu email</label>';
 				header("Location:"."../../src/templates/register.php");
-				// exit();
 			}
 
 		if ($senha !== $confirmarsenha) {
@@ -132,13 +123,12 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST") {
 				unset($_SESSION["alert-input"]);
         unset($_SESSION["alert-email"]);
         unset($_SESSION["alerta-senha-vazia"]);
-				header("Location:"."register.php");
+				header("Location:"."../../src/templates/register.php");
 				$_SESSION["usuarioCriado"] = true;
 				
 			} else {
 				$_SESSION["msg2-senha-errada"] = true;
 				header("Location:"."../../src/templates/register.php");
-				// return;
 				exit();
 			}
 		}
