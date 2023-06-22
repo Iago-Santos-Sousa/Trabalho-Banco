@@ -49,7 +49,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
         </button>
         <div class="collapse navbar-collapse p-3" id="navbarNav">
           <ul class="navbar-nav align-items-center">
-            <?php if(isset($_SESSION["id_usuarios"])): ?>
+            <?php if(isset($_SESSION['loggedin'])): ?>
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="./public/addreceita.php"
                 >Adicionar receita</a
@@ -59,10 +59,16 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
               <a class="nav-link" href="./public/favoritos.php">Favoritos</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link d-flex gap-2" href="">
+                <i class="fa-regular fa-user text-light align-self-center"></i>
+                <span><?=$_SESSION["email"]?></span>
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="./config/login/logout.php">Sair</a>
             </li>
             <?php endif; ?>
-            <?php if (!isset($_SESSION["id_usuarios"])): ?>
+            <?php if (!isset($_SESSION['loggedin'])): ?>
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="./src/templates/loginEntrar.php"
                 >Login</a

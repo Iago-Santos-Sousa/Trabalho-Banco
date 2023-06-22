@@ -15,7 +15,6 @@ $todosRegistrosReceitasArray = todosRegistrosReceitas($userID);
     <title>Document</title>
   </head>
   <body style="height: 100vh" class="corpo">
-    <!-- nav verificado -->
     <nav
       class="navbar navbar-expand-lg bg-body-tertiary bg-primary fixed-top"
       data-bs-theme="dark"
@@ -37,7 +36,7 @@ $todosRegistrosReceitasArray = todosRegistrosReceitas($userID);
         </button>
         <div class="collapse navbar-collapse p-3" id="navbarNav">
           <ul class="navbar-nav align-items-center">
-            <?php if(isset($_SESSION["id_usuarios"])): ?>
+            <?php if(isset($_SESSION['loggedin'])): ?>
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="../index.php"
                 >Home</a
@@ -47,10 +46,16 @@ $todosRegistrosReceitasArray = todosRegistrosReceitas($userID);
               <a class="nav-link" href="./favoritos.php">Favoritos</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link d-flex gap-2" href="">
+                <i class="fa-regular fa-user text-light align-self-center"></i>
+                <span><?=$_SESSION["email"]?></span>
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="../config/login/logout.php">Sair</a>
             </li>
             <?php endif; ?>
-            <?php if (!isset($_SESSION["id_usuarios"])): ?>
+            <?php if (!isset($_SESSION['loggedin'])): ?>
               <?php header("Location:"."index.php"); ?>
             <?php endif; ?>
           </ul>
@@ -93,7 +98,6 @@ $todosRegistrosReceitasArray = todosRegistrosReceitas($userID);
           </div>
         </div>
 
-        <!-- segunda linha -->
         <div class="row justify-content-center mt-3">
           <div class="col-md-8 col-lg-6">
             <div class="form-floating">
@@ -131,7 +135,6 @@ $todosRegistrosReceitasArray = todosRegistrosReceitas($userID);
           }
         ?>
 
-        <!-- Botão submit -->
         <div class="row justify-content-center pt-4">
           <div class="col-auto">
             <input type="hidden" name="criar-receita" value="create" />
