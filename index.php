@@ -1,17 +1,5 @@
 <?php
 session_start();
-
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-  echo "logado";
- 
-} else {
-  echo "não está logado!";
-  unset($_SESSION["id_usuarios"]);
-  unset($_SESSION["email"]);
-  unset($_SESSION["senha"]);
-  unset($_SESSION['loggedin']);
-  session_destroy();
-}
 ?>
 
 <!DOCTYPE html>
