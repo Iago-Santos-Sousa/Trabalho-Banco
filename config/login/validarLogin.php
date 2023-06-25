@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		$email = $_POST["email"];
 		$senha = $_POST["password"];
 
-		if (verificarUser($email, $senha) == true) {
+		if (verificarUser($email, md5($senha)) == true) {
 
 			if(isset($_SESSION["id_usuarios"]) || isset($_SESSION["email"]) || isset($_SESSION["senha"])){
 				$_SESSION['loggedin'] = true;

@@ -117,7 +117,8 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST") {
 
 		} else {
 			if (validarSenha($senha)) {
-				inserirUser($nome, $sobrenome, $email, md5($senha));
+				$senhaHash = md5($senha);
+				inserirUser($nome, $sobrenome, $email, $senhaHash);
 				unset($_SESSION["nome-user"]);
         unset($_SESSION["sobre-nome-user"]);
 				unset($_SESSION["alert-input"]);
