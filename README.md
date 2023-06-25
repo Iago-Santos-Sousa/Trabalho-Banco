@@ -36,7 +36,7 @@ Na linha 112 verificamos se a senha digitada pelo ususário é igual a que foi c
 
 Se as senhas forem iguais chamamos a função "**validarSenha()**" que está no script "**funcoesLogin.php**", essa função valida a senha digitada por meio de uma **expressão regular** que requer no mínimo 8 caracteres sendo esses uma letra maiúscula, uma letra minúscula, um número e um caractere especial. Se a senha corresponder as exigências chamamos a função "**inserirUser()**" que está definida no script "**funcoesLogin.php**", ela é responsável por inserir os dados do usuário na tabela usuários no BD por meio do PDO do PHP, OBS: a "**$senha**" passada como argumento está criptografada com a função "**md5()**" do PHP, em seguida emitimos mensagem de sucesso com a variável global "**$\_SESSION["usuarioCriado"]**"
 
-### 1.1 Fazer login:
+### 1.2 Fazer login:
 
 Com o cadastro do usuário já realizado, ele acessa a página de login e clica no botão entrar.
 
