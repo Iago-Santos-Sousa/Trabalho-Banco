@@ -11,7 +11,7 @@ CREATE TABLE usuarios (
 
 CREATE TABLE receitas (
   id_receitas INT PRIMARY KEY AUTO_INCREMENT,
-  nome_receitas VARCHAR(255) NOT NULL,
+  nome_receitas TEXT NOT NULL,
   tempo_de_preparo INT NOT NULL,
   descricao TEXT NOT NULL
 );
@@ -42,6 +42,6 @@ CREATE TABLE favoritos (
   id_usuarios_fa INT,
   receitas_fa VARCHAR(255) NOT NULL,
   tempo_de_preparo_fa INT,
-  ingredientes_fa VARCHAR(255) NOT NULL,
+  ingredientes_fa TEXT NOT NULL,
   descricao_fa TEXT
 );

@@ -13,7 +13,7 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST") {
 
 		if(!validarCamposLogin($inputs)) {
 			header("Location:"."../../src/templates/register.php");
-			$_SESSION["alerta-senha-vazia"] = true;
+			$_SESSION["alertaCamposVazios"] = true;
 		}
 		
 		$nome = $_POST["name"];
@@ -117,12 +117,12 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST") {
 
 		} else {
 			if (validarSenha($senha)) {
-				inserirUser($nome, $sobrenome, $email, $senha);
+				inserirUser($nome, $sobrenome, $email, md5($senha));
 				unset($_SESSION["nome-user"]);
         unset($_SESSION["sobre-nome-user"]);
 				unset($_SESSION["alert-input"]);
         unset($_SESSION["alert-email"]);
-        unset($_SESSION["alerta-senha-vazia"]);
+        unset($_SESSION["alertaCamposVazios"]);
 				header("Location:"."../../src/templates/register.php");
 				$_SESSION["usuarioCriado"] = true;
 				
@@ -135,7 +135,7 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST") {
 	
 	}	else {
 		header("Location:"."../../src/templates/register.php");
-		$_SESSION["alerta-senha-vazia"] = true;
+		$_SESSION["alertaCamposVazios"] = true;
 		exit();
 	}
 	

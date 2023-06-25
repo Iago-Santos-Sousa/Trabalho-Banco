@@ -7,10 +7,12 @@ use Dompdf\Dompdf;
 $umFavorito = [];
 
 if( isset($_POST["imprimir_pdf"])) {
+  
   $favoritoID = $_POST["favorito_id"];
   $umFavorito = umRegistroFavorito($userID, $favoritoID);
  
   $dompdf = new Dompdf();
+
   ob_start();
   include "impressao.php";
   $html = ob_get_clean();

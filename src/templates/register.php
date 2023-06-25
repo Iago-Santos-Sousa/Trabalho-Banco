@@ -42,7 +42,7 @@ session_start();
                 unset($_SESSION["usuarioCriado"]);
               }
 
-              if(isset($_SESSION["nome-user"]) && isset($_SESSION["sobre-nome-user"])) {
+              if(isset($_SESSION["nome-user"]) || isset($_SESSION["sobre-nome-user"])) {
                 echo $_SESSION["nome-user"];
                 echo $_SESSION["sobre-nome-user"];
                 unset($_SESSION["nome-user"]);
@@ -144,9 +144,9 @@ session_start();
               ?>
             </div>
             <?php
-              if(isset($_SESSION["alerta-senha-vazia"])) {
+              if(isset($_SESSION["alertaCamposVazios"])) {
                 echo '<p class="text-danger">Preencha todos os campos e de forma correta!</p>';
-                unset($_SESSION["alerta-senha-vazia"]);
+                unset($_SESSION["alertaCamposVazios"]);
               }
             ?>
             <input type="submit" class="btn btn-primary" value="Cadastrar" />
