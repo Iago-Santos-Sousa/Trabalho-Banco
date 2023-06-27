@@ -47,3 +47,22 @@ Na linha 8 verificamos se os campos email e senha estão preenchidos, se algum e
 Na linha 12 chamamos a função "**verificarUser()**" que esta no script "**funcoesLogin.php**", essa função verifica se o email e senha estão cadastrados no BD por meio de um select usando PDO, se estiver, inciamos a sessão do usuário com as variáveis globais "**$\_SESSION**" e definimos uma sessão de login padrão com a "**$\_SESSION['loggedin']**", em seguida o usuário é redirecionado para o sistema com a função "**header()**".
 
 Caso o email e senha não sejam encontrados destruimos as sessões para maior segurança, e emitimos mensagem de erro com a variável global "**$\_SESSION["alert"]**" e impedimos o redirecionamento da página.
+
+# 2. Favoritar receita:
+
+Quando o usuário escolher qual receita favoritar, ele clica no botão de favorito.
+
+No script "**process**.php" na linha 32 verificamos se o input escondido "**favorito**" está definido e recebemos a ação desse usuário por meio de uma requsição "**POST**" de um formulário.
+
+Na linha 33 recebemos também o id da receita escolhida em um input escondido na que está no script "**addreceita**.php".
+
+Na linha 34 chamamos a função "**inserirFavorito**($userID, $idReceita)" que está definida no script "**funcoes.php**" essa função insere a receita favoritada no BD na tabela favoritos com base no id do usuário e da receita. 
+Dentro dessa função criamos o array "**$favoritoRegistro = []**" que irá receber a função "**umRegistroReceita($userID, $idReceita)**" com o registro da receita escolhida pelo usuário, em seguida fazemos uma query utilizando o **PDO** para inserir os dados dessa receita na tabela de favoritos por meio do array "**$favoritoRegistro = []\*\*" que já está com os dados dessa receita.
+
+**OBS:** Optamos por criar a tabela favoritos sem relacionar chaves estrangeiras com primárias e fazer esse procedimento na função "**inserirFavorito**" porque colocamos a cláusula "**ON DELETE CASCADE**" nas chaves estrangeiras relacionadas do BD, para quando deletarmos uma receita, delete também seus ingredientes. Se tivessemos relacionado chaves com a tabela favoritos, assim que deletassemos uma receita também deletariamos ela na tabela favoritos.
+
+Na linha 35 chamamos a função "**deletarReceita**" para retirar esse receita favoritada da página "**addreceita.php**".
+
+Na linha 35 definimos a "**$\_SESSION["msgFavorito"]**" para emitir mensagem de sucesso.
+
+No script "**favoritos.php**" na linha 3 chamaos a função "**todosRegistrosFavoritos($userID)**" dentro do array "**$todosRegistrosFavoritosArray**" para imprimir todas as receitas favoritadas pelo usuário na página com um loop for each.
