@@ -48,7 +48,7 @@ Na linha 12 chamamos a função "**verificarUser()**" que esta no script "**func
 
 Caso o email e senha não sejam encontrados destruimos as sessões para maior segurança, e emitimos mensagem de erro com a variável global "**$\_SESSION["alert"]**" e impedimos o redirecionamento da página.
 
-# 2. Favoritar receita:
+# 3. Favoritar receita:
 
 Quando o usuário escolher qual receita favoritar, ele clica no botão de favorito.
 
