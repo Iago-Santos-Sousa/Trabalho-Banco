@@ -54,7 +54,7 @@ Quando o usuário escolher qual receita favoritar, ele clica no botão de favori
 
 No script "**process**.php" na linha 32 verificamos se o input escondido "**favorito**" está definido e recebemos a ação desse usuário por meio de uma requsição "**POST**" de um formulário.
 
-Na linha 33 recebemos também o id da receita escolhida em um input escondido na que está no script "**addreceita**.php".
+Na linha 33 recebemos também o id da receita escolhida em um input escondido que está no script "**addreceita.php**".
 
 Na linha 34 chamamos a função "**inserirFavorito**($userID, $idReceita)" que está definida no script "**funcoes.php**" essa função insere a receita favoritada no BD na tabela favoritos com base no id do usuário e da receita. 
 Dentro dessa função criamos o array "**$favoritoRegistro = []**" que irá receber a função "**umRegistroReceita($userID, $idReceita)**" com o registro da receita escolhida pelo usuário, em seguida fazemos uma query utilizando o **PDO** para inserir os dados dessa receita na tabela de favoritos por meio do array "**$favoritoRegistro = []\*\*" que já está com os dados dessa receita.
