@@ -65,4 +65,4 @@ Na linha 35 chamamos a função "**deletarReceita**" para retirar esse receita f
 
 Na linha 35 definimos a "**$\_SESSION["msgFavorito"]**" para emitir mensagem de sucesso.
 
-No script "**favoritos.php**" na linha 3 chamaos a função "**todosRegistrosFavoritos($userID)**" dentro do array "**$todosRegistrosFavoritosArray**" para imprimir todas as receitas favoritadas pelo usuário na página com um loop for each.
+No script "**favoritos.php**" na linha 3 chamamos a função "**todosRegistrosFavoritos($userID)**" dentro do array "**$todosRegistrosFavoritosArray**" para imprimir todas as receitas favoritadas pelo usuário na página com um loop for each.
