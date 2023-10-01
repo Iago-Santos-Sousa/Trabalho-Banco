@@ -1,4 +1,4 @@
-# Trabalho-Banco
+# Trabalho-Livro-Receita
 
 ### Funcionalidades do trabalho:
 
